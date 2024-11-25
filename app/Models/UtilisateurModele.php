@@ -20,4 +20,16 @@ class UtilisateurModele extends Model
 	{
 		return $this->where('mail', $mail)->first();
 	}
+
+	public function ajouter() {
+		
+	}
+
+	public function modifier() {
+		
+	}
+
+	public function supprimer() {
+	
+	}
 }
