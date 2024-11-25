@@ -1,3 +1,9 @@
+DROP TABLE IF EXISTS Commentaire;
+DROP TABLE IF EXISTS Groupe;
+DROP TABLE IF EXISTS Tache;
+DROP TABLE IF EXISTS Projet;
+DROP TABLE IF EXISTS Utilisateur;
+
 -- Création de la table Utilisateur
 CREATE TABLE Utilisateur (
 	idUtil SERIAL PRIMARY KEY,
