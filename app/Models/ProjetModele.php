@@ -9,4 +9,16 @@ class ProjetModele extends Model
 		'titreProjet',
 		'descriptionProjet'
 	];
+
+	public function ajouter() {
+		
+	}
+
+	public function modifier() {
+		
+	}
+
+	public function supprimer() {
+	
+	}
 }
