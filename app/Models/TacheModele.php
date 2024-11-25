@@ -14,4 +14,16 @@ class TacheModele extends Model
 		'dateCreation',
 		'idProjet'
 	];
+
+	public function ajouter() {
+		
+	}
+
+	public function modifier() {
+		
+	}
+
+	public function supprimer() {
+	
+	}
 }
