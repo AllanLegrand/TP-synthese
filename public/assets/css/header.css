@@ -1,0 +1,50 @@
+header {
+    background-color: #f8f9fa; /* Couleur claire pour le fond */
+    padding: 10px 20px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Légère ombre pour la séparation */
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+/* Logo à gauche */
+.navbar-brand img {
+    height: 30px; /* Limiter la hauteur du logo */
+    width: auto; /* Garder les proportions */
+}
+
+/* Conteneur des boutons de navigation */
+.navbar .btn {
+    margin-right: 20px;
+    font-size: 0.9rem; /* Ajuste la taille du texte des boutons */
+    padding: 5px 15px;
+}
+
+/* Barre de recherche */
+.search-bar {
+    max-width: 200px; /* Limite la largeur de la barre de recherche */
+    border-radius: 5px; /* Coins arrondis */
+    border: 1px solid #ddd;
+    padding: 5px 15px;
+}
+
+/* Logo utilisateur à droite */
+.user-icon {
+    height: 30px; /* Taille du logo utilisateur */
+    width: 30px;
+    overflow: hidden;
+    margin-left: 10px;
+}
+
+/* Style pour centrer verticalement les éléments dans le header */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Conteneur des éléments à gauche (boutons + recherche + utilisateur) */
+.navbar .ms-auto {
+    display: flex;
+    align-items: center;
+}
