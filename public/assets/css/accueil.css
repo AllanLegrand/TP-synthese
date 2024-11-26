@@ -1,0 +1,92 @@
+/* Global */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Bouton primaire */
+.btn-primary {
+    background-color: #614DE4; /* Couleur principale (violet foncé) */
+    border-color: #614DE4; /* Bordure de la même couleur */
+    color: #ffffff; /* Couleur du texte */
+    transition: 0.3s ease; /* Animation douce pour les interactions */
+}
+
+/* Bouton primaire : effet au survol */
+.btn-primary:hover {
+    background-color: #3d2089; /* Couleur plus sombre au survol */
+    border-color: #3d2089;
+    color: #ffffff; /* Garder le texte blanc */
+}
+
+
+/* Bouton outline */
+.btn-outline-primary {
+    background-color: transparent; /* Fond transparent */
+    border-color: #614DE4; /* Bordure violette */
+    color: #614DE4; /* Texte violet */
+    transition: 0.3s ease; /* Animation douce */
+}
+
+/* Bouton outline : effet au survol */
+.btn-outline-primary:hover {
+    background-color: #4e27a8; /* Remplissage violet au survol */
+    border-color: #4e27a8; /* Bordure violette */
+    color: #ffffff; /* Texte blanc */
+}
+
+.btn{
+    min-width: 120px;
+}
+
+/* Hero Section */
+.hero-section {
+    position: relative;
+    height: 80vh; /* Prend toute la hauteur de la fenêtre */
+    background: url('/assets/img/img-home.png') no-repeat center center/cover; /* Remplace par le chemin de votre image */
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-content {
+    max-width: 600px;
+    text-align: center;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: black;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    color: black;
+}
+
+.hero-content .btn-primary {
+    background-color: #614DE4;
+    border-color: #614DE4;
+    font-size: 1.1rem;
+    padding: 10px 20px;
+    text-transform: uppercase;
+}
+
+.hero-content .btn-primary:hover {
+    background-color: #4e27a8;
+    border-color: #4e27a8;
+}

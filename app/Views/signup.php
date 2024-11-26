@@ -5,47 +5,38 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Inscription</title>
+	<link href="/assets/css/inscription.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
-	<h1>Inscription</h1>
-	
-	<?php if (isset($validation)): ?>
-		<div style="color: red;">
-			<?= $validation->listErrors() ?>
-		</div>
-	<?php endif; ?>
 
 	<form action="/signup/store" method="post">
+		<h3>Inscription</h3>
 		<label for="mail">E-mail :</label>
-		<input type="email" name="mail" id="mail" value="<?= old('mail') ?>" required>
+		<input type="email" name="mail" id="mail" placeholder="Entrez votre adresse e-mail" required>
 		<?php if (isset($validation) && $validation->hasError('email')): ?>
 			<div style="color: red;">
 				<?= $validation->getError('email') ?>
 			</div>
 		<?php endif; ?>
-		<br>
 		
 		<label for="nom">Nom :</label>
-		<input type="text" name="nom" id="nom" value="<?= old('nom') ?>" required>
-		<br>
+		<input type="text" name="nom" id="nom" placeholder="Entrez votre nom" required>
 		
 		<label for="prenom">Prénom :</label>
-		<input type="text" name="prenom" id="prenom" value="<?= old('prenom') ?>" required>
-		<br>
+		<input type="text" name="prenom" id="prenom" placeholder="Entrez votre prénom" required>
 		
 		<label for="password">Mot de passe :</label>
-		<input type="password" name="password" id="password" required>
-		<br>
+		<input type="password" name="password" id="password" placeholder="Entrez votre mot de passe" required>
 		
 		<label for="confirmpassword">Confirmer le mot de passe :</label>
-		<input type="password" name="confirmpassword" id="confirmpassword" required>
-		<br>
+		<input type="password" name="confirmpassword" id="confirmpassword" placeholder="Confirmez votre mot de passe" required>
 		
 		<button type="submit">S'inscrire</button>
+		<a href="/signin">
+			<button type="button" class="signin">Déjà un compte ?</button>
+		</a>
 	</form>
-	
-	<a href="/signin">Déjà un compte ? Connectez-vous</a>
 </body>
 
 </html>

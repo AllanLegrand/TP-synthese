@@ -1,8 +1,14 @@
-<h1>Liste des projets</h1>
-	<ul>
-		<?php foreach ($projets as $projet): ?>
-			<li>
-				<?= $projet->nom ?>
-			</li>
-		<?php endforeach; ?>
-	</ul>
+<h1>Liste des Projets</h1>
+
+<?php if (!empty($projets)): ?>
+    <ul>
+        <?php foreach ($projets as $projet): ?>
+            <li>
+                <strong><?= esc($projet['titreprojet']) ?></strong>
+                <p><?= esc($projet['descriptionprojet']) ?></p>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+<?php else: ?>
+    <p>Aucun projet trouvé.</p>
+<?php endif; ?>

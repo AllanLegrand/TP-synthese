@@ -4,3 +4,20 @@
     --violetclair: #614de4;
     --violetfoncer: #6459a7;
 }
+
+.blanc{
+    background-color: var(--blanc);
+}
+
+.bleu{
+    background-color: var(--bleu);
+}
+
+.violetclair{
+    background-color: var(--violetclair);
+}
+
+.violetfoncer{
+    background-color: var(--violetfoncer);
+}
+

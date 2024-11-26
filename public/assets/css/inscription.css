@@ -1,7 +1,7 @@
 @import url('couleur.css');
 
 form {
-    height: 520px;
+    height: 680px;
     width: 400px;
     background-color: var(--blanc);
     transform: translate(-50%, -50%);
@@ -12,7 +12,7 @@ form {
     box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
     padding: 50px 35px;
     position: relative;
-    top: 380px;
+    top: 410px;
 }
 
 form * {
@@ -31,7 +31,7 @@ form h3 {
 
 label {
     display: block;
-    margin-top: 30px;
+    margin-top: 20px;
     font-size: 16px;
     font-weight: 500;
 }
@@ -43,8 +43,7 @@ input {
     background-color: var(--blanc);
 	border: 2px solid var(--violetclair);
     border-radius: 6px;
-    margin-top: 8px;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 300;
     padding-left: 10px;
     box-sizing: border-box;
@@ -55,11 +54,19 @@ input {
     color: var(--violetfoncer);
 }
 
+.signin {
+	background-color: var(--blanc);
+    color:  var(--violetclair);;
+	border: 2px solid var(--violetclair);
+    margin-top: 10px;
+}
+
 button {
-    margin-top: 50px;
+    margin-top: 30px;
     width: 100%;
     background-color: var(--violetclair);
-    color:  var(--blanc);;
+    color: var(--blanc);
+    border: 2px solid var(--blanc);
     padding: 15px 0;
     font-size: 18px;
     font-weight: 600;
@@ -67,17 +74,10 @@ button {
     cursor: pointer;
 }
 
-.signup {
-    background-color: var(--blanc);
-    color:  var(--violetclair);
-    border: 2px solid var(--violetclair);
-    margin-top: 10px;
+.signin:hover {
+    background-color: var(--bleu);
 }
 
 button:hover {
     background-color: var(--violetfoncer);
-}
-
-.signup:hover {
-    background-color: var(--bleu);
 }
