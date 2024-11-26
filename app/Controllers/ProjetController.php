@@ -14,7 +14,7 @@ class ProjetController extends BaseController
 		$projets = $projetModel->getProjectsByUser($idUtil);
 
 		// Charger une vue pour afficher les projets de l'utilisateur
-		return view('projets/user_projects', [
+		return view('listeProjet', [
 			'projets' => $projets,
 			'idutil' => $idUtil
 		]);
