@@ -25,7 +25,7 @@ class TacheModel extends Model
      */
     public function getTacheByProject(int $idProjet): array
     {
-        return $this->where('idProjet', $idProjet)
+        return $this->where('idprojet', $idProjet)
             ->orderBy('dateCreation', 'ASC') // Facultatif : trie les tâches par date de création
             ->findAll();
     }
