@@ -6,6 +6,9 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
+//accueil
+$routes->get('/accueil','Accueil::index');
+$routes->get('/projet/(:any)','ProjetController::index/$1');
 
 // Authentification
 $routes->get('/', 'SignupController::index'); // Page d'accueil ou formulaire d'inscription

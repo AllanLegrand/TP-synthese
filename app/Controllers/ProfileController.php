@@ -15,7 +15,7 @@ class ProfileController extends BaseController
             return redirect()->to('/signin')->with('msg', 'Vous devez être connecté pour accéder à votre profil.');
         }
 
-        $userId = $session->get('id');
+        $userId = $session->get('idutil');
         $utilisateurModel = new UtilisateurModele();
         $user = $utilisateurModel->find($userId);
 
