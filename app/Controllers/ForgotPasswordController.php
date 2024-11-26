@@ -1,7 +1,7 @@
 <?php
 namespace App\Controllers;
 use CodeIgniter\Controller;
-use App\Models\UserModelB;
+use App\Models\UtilisateurModele;
 class ForgotPasswordController extends Controller
 {
 	public function index()
@@ -13,13 +13,13 @@ class ForgotPasswordController extends Controller
 	public function sendResetLink()
 	{
 		$email = $this->request->getPost('email');
-		$userModel = new UserModelB();
+		$userModel = new UtilisateurModele();
 		$user = $userModel->where('email', $email)->first();
 		// Dans la méthode sendResetLink du contrôleur ForgotPasswordController
 		$email = $this->request->getPost('email');
 
 		$email = $this->request->getPost('email');
-		$userModel = new UserModelB();
+		$userModel = new UtilisateurModele();
 		$user = $userModel->where('email', $email)->first();
 		var_dump($user); // Ajoutez ceci pour voir le résultat de la requête
 		if ($user) {

@@ -14,8 +14,8 @@
 	<?php endif; ?>
 	<form action="/SigninController/loginAuth" method="post">
 		<h3>Connexion</h3>
-		<label for="email">E-mail :</label>
-		<input type="email" name="email" id="email" placeholder="Entrez votre adresse e-mail" required>
+		<label for="mail">E-mail :</label>
+		<input type="mail" name="email" id="mail" placeholder="Entrez votre adresse e-mail" required>
 		<br>
 		<label for="password">Mot de passe :</label>
 		<input type="password" name="password" id="password" placeholder="Entrez votre mot de passe" required>

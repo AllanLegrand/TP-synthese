@@ -1,7 +1,7 @@
 <?php
 namespace App\Controllers;
 use CodeIgniter\Controller;
-use App\Models\UserModel;
+use App\Models\UtilisateurModele;
 class SigninController extends BaseController
 {
 	public function index()
@@ -12,18 +12,18 @@ class SigninController extends BaseController
 	public function loginAuth()
 	{
 		$session = session();
-		$userModel = new UserModel();
+		$UtilisateurModele = new UtilisateurModele();
 		$email = $this->request->getVar('email');
 		$password = $this->request->getVar('password');
-		$data = $userModel->where('email', $email)->first();
+		$data = $UtilisateurModele->where('mail', $email)->first();
 		if ($data) {
-			$pass = $data['password'];
+			$pass = $data['mdp'];
 			$authenticatePassword = password_verify($password, $pass);
 			if ($authenticatePassword) {
 				$ses_data = [
-					'id' => $data['id'],
-					'name' => $data['name'],
-					'email' => $data['email'],
+					'id' => $data['idutil'],
+					'name' => $data['nom'],
+					'email' => $data['mail'],
 					'isLoggedIn' => TRUE
 				];
 				$session->set($ses_data);

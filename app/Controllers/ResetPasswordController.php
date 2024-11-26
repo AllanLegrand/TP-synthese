@@ -1,13 +1,13 @@
 <?php
 namespace App\Controllers;
-use App\Models\UserModelB;
+use App\Models\UtilisateurModele;
 use CodeIgniter\Controller;
 class ResetPasswordController extends Controller
 {
 	public function index($token)
 	{
 		helper(['form']);
-		$userModel = new UserModelB();
+		$userModel = new UtilisateurModele();
 		$user = $userModel->where('reset_token', $token)
 			->where('reset_token_expiration >', date('Y-m-d H:i:s'))
 			->first();
@@ -23,7 +23,7 @@ class ResetPasswordController extends Controller
 		$password = $this->request->getPost('password');
 		$confirmPassword = $this->request->getPost('confirm_password');
 		// Valider et traiter les données du formulaire
-		$userModel = new UserModelB();
+		$userModel = new UtilisateurModele();
 		$user = $userModel->where('reset_token', $token)
 			->where('reset_token_expiration >', date('Y-m-d H:i:s'))
 			->first();
