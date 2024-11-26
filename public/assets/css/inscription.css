@@ -1,5 +1,14 @@
 @import url('couleur.css');
 
+/* Global */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Formulaire */
 form {
     height: 680px;
     width: 400px;

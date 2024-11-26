@@ -48,3 +48,44 @@ header {
     display: flex;
     align-items: center;
 }
+
+.btn{
+    min-width: 120px;
+}
+
+/* Bouton primaire */
+.btn-primary {
+    background-color: #614DE4; /* Couleur principale (violet foncé) */
+    border-color: #614DE4; /* Bordure de la même couleur */
+    color: #ffffff; /* Couleur du texte */
+    transition: 0.3s ease; /* Animation douce pour les interactions */
+}
+
+/* Bouton primaire : effet au survol */
+.btn-primary:hover {
+    background-color: #3d2089; /* Couleur plus sombre au survol */
+    border-color: #3d2089;
+    color: #ffffff; /* Garder le texte blanc */
+}
+
+
+/* Bouton outline */
+.btn-outline-primary {
+    background-color: transparent; /* Fond transparent */
+    border-color: #614DE4; /* Bordure violette */
+    color: #614DE4; /* Texte violet */
+    transition: 0.3s ease; /* Animation douce */
+}
+
+/* Bouton outline : effet au survol */
+.btn-outline-primary:hover {
+    background-color: #4e27a8; /* Remplissage violet au survol */
+    border-color: #4e27a8; /* Bordure violette */
+    color: #ffffff; /* Texte blanc */
+}
+
+.nav-link:hover{
+    color: #614DE4;
+    text-decoration: solid;
+    text-decoration: underline;
+}

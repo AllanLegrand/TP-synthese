@@ -38,7 +38,7 @@ body, html {
 }
 
 .btn{
-    min-width: 120px;
+    min-width: 180px;
 }
 
 /* Hero Section */
@@ -79,14 +79,18 @@ body, html {
 }
 
 .hero-content .btn-primary {
-    background-color: #614DE4;
-    border-color: #614DE4;
     font-size: 1.1rem;
     padding: 10px 20px;
     text-transform: uppercase;
+    transition: 0.3s ease; /* Animation douce */
+    margin-right: 15px;
 }
 
-.hero-content .btn-primary:hover {
-    background-color: #4e27a8;
-    border-color: #4e27a8;
+
+.hero-content .btn-outline-primary {
+    text-transform: uppercase;
+    transition: 0.3s ease; /* Animation douce */
+    font-size: 1.1rem;
+    padding: 10px 20px;
 }
+
