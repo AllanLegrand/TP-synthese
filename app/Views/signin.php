@@ -23,6 +23,9 @@
 		<a href="/forgot-password">Mot de passe oublié ?</a>
 		<br>
 		<button type="submit">Se connecter</button>
+		<a href="/signup">
+			<button type="button" class="signup">Créer un compte</button>
+		</a>
 	</form>
 </body>
 </html>
