@@ -8,7 +8,7 @@ use CodeIgniter\Router\RouteCollection;
 // Authentification
 $routes->get('/', 'SignupController::index'); // Page d'accueil ou formulaire d'inscription
 $routes->get('/signup', 'SignupController::index'); // Formulaire d'inscription
-$routes->match(['get', 'post'], '/SignupController/store', 'SignupController::store'); // Stocker les données de l'inscription
+$routes->match(['get', 'post'], '/signup/store', 'SignupController::store'); // Stocker les données de l'inscription
 
 $routes->get('/signin', 'SigninController::index'); // Formulaire de connexion
 $routes->match(['get', 'post'], '/SigninController/loginAuth', 'SigninController::loginAuth'); // Traitement de l'authentification
@@ -23,3 +23,5 @@ $routes->get('/reset-password/(:any)', 'ResetPasswordController::index/$1'); // 
 $routes->post('/reset-password/updatePassword', 'ResetPasswordController::updatePassword'); // Mise à jour du mot de passe
 
 $routes-> get('/Accueil','Accueil::index');
+
+$routes->get('/Projets','ProjetController::index', ['filter' => 'authGuard']);

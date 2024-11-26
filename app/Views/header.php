@@ -17,20 +17,20 @@
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container-fluid">
                 <!-- Logo -->
-                <a class="navbar-brand" href="<?= base_url('accueil') ?>">
+                <a class="navbar-brand" href="<?= base_url('Accueil') ?>">
                     <img src="/assets/img/PF.png" alt="Logo">
                 </a>
                 <!-- Boutons à gauche -->
                 <div class="d-flex align-items-center">
                     <!-- Lien "Projets" -->
-                    <a class="nav-link me-3" href="<?= base_url('projets') ?>">Projets</a>
+                    <a class="nav-link me-3" href="<?= base_url('Projets') ?>">Projets</a>
                     <!-- Bouton "Créer" -->
                     <button class="btn btn-primary" onclick="location.href='<?= base_url('creer') ?>';">Créer</button>
                 </div>
                 <!-- Barre de recherche + icône utilisateur -->
                 <div class="ms-auto d-flex align-items-center">
                     <input type="text" class="form-control search-bar me-2" placeholder="Rechercher...">
-                    <a href="<?= base_url('profil') ?>">
+                    <a href="<?= base_url('profile') ?>">
                         <img src="/assets/img/user.png" alt="Utilisateur" class="user-icon">
                     </a>
                 </div>

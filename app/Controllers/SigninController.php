@@ -21,13 +21,13 @@ class SigninController extends BaseController
 			$authenticatePassword = password_verify($password, $pass);
 			if ($authenticatePassword) {
 				$ses_data = [
-					'id' => $data['idutil'],
+					'idutil' => $data['idutil'],
 					'name' => $data['nom'],
 					'email' => $data['mail'],
 					'isLoggedIn' => TRUE
 				];
 				$session->set($ses_data);
-				return redirect()->to('/profile');
+				return redirect()->to('/Projets');
 			} else {
 				$session->setFlashdata('msg', 'Password incorrect.');
 				return redirect()->to('/signin');
