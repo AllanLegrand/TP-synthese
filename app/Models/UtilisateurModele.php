@@ -21,6 +21,11 @@ class UtilisateurModele extends Model
 		return $this->where('mail', $mail)->first();
 	}
 
+	public function projets()
+	{
+		return $this->hasMany(ProjetModele::class, 'idutil');
+	}
+
 	public function ajouter() {
 		
 	}
