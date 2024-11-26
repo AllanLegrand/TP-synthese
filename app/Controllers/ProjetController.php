@@ -42,8 +42,7 @@ class ProjetController extends BaseController
 
 		// Charger une vue pour afficher les projets de l'utilisateur
 		return view('liste_tache', [
-			'titre' => $projets[index]['titreprojet'],
-			'description' => $projets[index]['descriptionprojet'],
+			'projet' => $projets[$index],
 			'taches' => $taches
 		]);
 	}

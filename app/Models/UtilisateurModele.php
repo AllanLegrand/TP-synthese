@@ -23,7 +23,7 @@ class UtilisateurModele extends Model
 
 	public function projets()
 	{
-		return $this->hasMany(ProjetModele::class, 'idutil');
+		return $this->hasMany(ProjetModel::class, 'idutil');
 	}
 
 	public function ajouter() {
