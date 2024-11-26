@@ -12,15 +12,11 @@ class ForgotPasswordController extends Controller
 
 	public function sendResetLink()
 	{
-		$email = $this->request->getPost('email');
+		$email = $this->request->getPost('mail');
 		$userModel = new UtilisateurModele();
-		$user = $userModel->where('email', $email)->first();
-		// Dans la méthode sendResetLink du contrôleur ForgotPasswordController
-		$email = $this->request->getPost('email');
+		$user = $userModel->where('mail', $email)->first();
+		
 
-		$email = $this->request->getPost('email');
-		$userModel = new UtilisateurModele();
-		$user = $userModel->where('email', $email)->first();
 		var_dump($user); // Ajoutez ceci pour voir le résultat de la requête
 		if ($user) {
 			echo 'Utilisateur trouvé :';
@@ -34,9 +30,9 @@ class ForgotPasswordController extends Controller
 			// Générer un jeton de réinitialisation de MDP et enregistrer-le dans BD
 			$token = bin2hex(random_bytes(16));
 			$expiration = date('Y-m-d H:i:s', strtotime('+1 hour'));
-			$userModel->set('reset_token', $token)
-				->set('reset_token_expiration', $expiration)
-				->update($user['id']);
+			$userModel->set('resettoken', $token)
+				->set('resettokenexpiration', $expiration)
+				->update($user['idutil']);
 			// Envoyer l'e-mail avec le lien de réinitialisation
 			$resetLink = site_url("reset-password/$token");
 			$message = "Cliquez sur le lien suivant pour réinitialiser MDP: $resetLink";

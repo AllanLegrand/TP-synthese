@@ -12,8 +12,8 @@ class UtilisateurModele extends Model
 		'prenom',
 		'created_at',
 		'mdp',
-		'reset_token',
-		'reset_token_expiration'
+		'resettoken',
+		'resettokenexpiration'
 	];
 
 	public function getUserByEmail($mail)
