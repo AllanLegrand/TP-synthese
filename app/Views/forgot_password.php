@@ -10,8 +10,8 @@
 <body>
 	<h1>Mot de passe oublié</h1>
 	<form action="/forgot-password/sendResetLink" method="post">
-		<label for="email">E-mail :</label>
-		<input type="email" name="email" id="email" required>
+		<label for="mail">E-mail :</label>
+		<input type="email" name="mail" id="mail" required>
 		<br>
 		<button type="submit">Envoyer le lien de réinitialisation</button>
 	</form>
