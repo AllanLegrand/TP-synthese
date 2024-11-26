@@ -22,3 +22,6 @@ $routes->post('/forgot-password/sendResetLink', 'ForgotPasswordController::sendR
 $routes->get('/reset-password/(:any)', 'ResetPasswordController::index/$1'); // Formulaire pour définir un nouveau mot de passe
 $routes->post('/reset-password/updatePassword', 'ResetPasswordController::updatePassword'); // Mise à jour du mot de passe
 
+$routes->get('/projets', 'ProjetController::index', ['filter' => 'authGuard']); // Page de profil protégée par un filtre
+$routes->get('/projets/(:any)', 'ProjetController::tache/$1', ['filter' => 'authGuard']); // Page de profil protégée par un filtre
+
