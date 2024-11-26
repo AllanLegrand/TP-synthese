@@ -4,8 +4,8 @@ use CodeIgniter\Model;
 
 class UtilisateurModele extends Model
 {
-	protected $table = 'Utilisateur';
-	protected $primaryKey = 'idUtil';
+	protected $table = 'utilisateur';
+	protected $primaryKey = 'idutil';
 	protected $allowedFields = [
 		'mail',
 		'nom',
