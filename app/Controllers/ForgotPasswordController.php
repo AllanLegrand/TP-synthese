@@ -15,17 +15,16 @@ class ForgotPasswordController extends Controller
 		$email = $this->request->getPost('mail');
 		$userModel = new UtilisateurModele();
 		$user = $userModel->where('mail', $email)->first();
-		
 
-		var_dump($user); // Ajoutez ceci pour voir le résultat de la requête
+/*
 		if ($user) {
 			echo 'Utilisateur trouvé :';
-			var_dump($user);
 		} else {
 			echo 'Utilisateur introuvable pour l\'e-mail : ' . $email;
 		}
 
 		echo 'Adresse e-mail soumise : ' . $email;
+*/
 		if ($user) {
 			// Générer un jeton de réinitialisation de MDP et enregistrer-le dans BD
 			$token = bin2hex(random_bytes(16));
@@ -43,13 +42,13 @@ class ForgotPasswordController extends Controller
 
 			$to = $this->request->getPost('to');
 			$subject = $this->request->getPost('subject');
-			//envoi du mail
+			//envoi du mailech
 			$emailService->setTo($email);
 			$emailService->setFrom($from);
 			$emailService->setSubject('Réinitialisation de mot de passe');
 			$emailService->setMessage($message);
 			if ($emailService->send()) {
-				echo 'E-mail envoyé avec succès.';
+				echo view('mail_succes' );
 			} else {
 				echo $emailService->printDebugger();
 			}
