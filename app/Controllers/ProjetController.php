@@ -19,6 +19,6 @@ class ProjetController extends BaseController
 			'projets' => $projets,
 			'idutil' => $idUtil
 		]);
-echo view('footer');
+		echo view('footer');
 	}
 }
