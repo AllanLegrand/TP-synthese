@@ -31,7 +31,7 @@ class ProjetController extends BaseController
 		// Récupérer les projets pour un utilisateur donné
 		$projets = $projetModel->getProjectsByUser($idUtil);
 
-		$index = array_search(strval($projet), $projets);
+		$index = $this->findProjectIndexById($projets, strval($projet));
 
 
 		if ($index == -1) {
@@ -65,5 +65,13 @@ class ProjetController extends BaseController
 		return redirect()->back()->with('message', 'Tâche modifiée avec succès.');
 	}
 
+	public function findProjectIndexById($array, $id) {
+		foreach ($array as $index => $projet) {
+			if ($projet["idprojet"] == $id) {
+				return $index;
+			}
+		}
+		return -1; // Si non trouvé
+	}
 
 }
