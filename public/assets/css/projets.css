@@ -31,6 +31,3 @@ body, html {
     overflow: hidden; /* Masquer le contenu qui dépasse */
     text-overflow: ellipsis; /* Ajouter "..." pour indiquer qu'il y a plus de contenu */
 }
-
-
-

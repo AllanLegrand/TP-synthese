@@ -14,7 +14,6 @@ class ProjetController extends BaseController
 		// Récupérer les projets pour un utilisateur donné
 		$projets = $projetModel->getProjectsByUser($idUtil);
 
-		// Charger une vue pour afficher les projets de l'utilisateur
 		echo view('header', ['title' => 'Projets']);
 		echo view('listeProjet', [
 			'projets' => $projets,
@@ -43,10 +42,12 @@ class ProjetController extends BaseController
 		$taches = $tacheModel->getTachesByProject($projet);
 
 		// Charger une vue pour afficher les projets de l'utilisateur
-		return view('liste_tache', [
+		echo view('header', ['title' => 'Tâches']);
+		echo view('liste_tache', [
 			'projet' => $projets[$index],
 			'taches' => $taches
 		]);
+		echo view('footer');
 	}
 
 	public function modifierTache()
