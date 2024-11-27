@@ -23,18 +23,41 @@ class UtilisateurModele extends Model
 
 	public function projets()
 	{
-		return $this->hasMany(ProjetModele::class, 'idutil');
+		return $this->hasMany(ProjetModel::class, 'idutil');
 	}
-
-	public function ajouter() {
-		
-	}
-
-	public function modifier() {
-		
-	}
-
-	public function supprimer() {
 	
+	/**
+	 * Ajoute un nouveau Utilisateur.
+	 *
+	 * @param array $data Données du Utilisateur à ajouter
+	 * @return bool|int Retourne l'ID du Utilisateur ajoutée ou false en cas d'échec
+	 */
+
+	public function ajouterUtilisateur(array $data): bool|int|string
+	{
+		return $this->insert($data);
+	}
+
+	/**
+	 * Met à jour un Utilisateur existante.
+	 *
+	 * @param int $idUtil ID du Utilisateur à modifier
+	 * @param array $data Données mises à jour
+	 * @return bool True en cas de succès, false en cas d'échec
+	 */
+	public function modifUtilisateur(int $idUtil, array $data): bool
+	{
+		return $this->update($idUtil, $data);
+	}
+
+	/**
+	 * Supprime un Utilisateur.
+	 *
+	 * @param int $idUtil ID du Utilisateur à supprimer
+	 * @return bool True en cas de succès, false en cas d'échec
+	 */
+	public function supprUtilisateur(int $idUtil): bool
+	{
+		return $this->delete($idUtil);
 	}
 }

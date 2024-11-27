@@ -24,4 +24,39 @@ class ProjetModel extends Model
             ->get()
             ->getResultArray();
     }
+
+	/**
+	 * Ajoute un nouveau projet.
+	 *
+	 * @param array $data Données du projet à ajouter
+	 * @return bool|int Retourne l'ID du projet ajoutée ou false en cas d'échec
+	 */
+
+	public function ajouterProjet(array $data): bool|int|string
+	{
+		return $this->insert($data);
+	}
+
+	/**
+	 * Met à jour un projet existante.
+	 *
+	 * @param int $idProjet ID du projet à modifier
+	 * @param array $data Données mises à jour
+	 * @return bool True en cas de succès, false en cas d'échec
+	 */
+	public function modifProjet(int $idProjet, array $data): bool
+	{
+		return $this->update($idProjet, $data);
+	}
+
+	/**
+	 * Supprime un projet.
+	 *
+	 * @param int $idProjet ID du projet à supprimer
+	 * @return bool True en cas de succès, false en cas d'échec
+	 */
+	public function supprProjet(int $idProjet): bool
+	{
+		return $this->delete($idProjet);
+	}
 }
