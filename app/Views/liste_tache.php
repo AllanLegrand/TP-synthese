@@ -12,7 +12,7 @@
                         <strong>Tâche:</strong> <?= esc($tache['titre']) ?><br>
                         <strong>Status:</strong> <?= esc($tache['statut']) ?><br>
                         <strong>Date limite:</strong> <?= esc($tache['echeance']) ?><br>
-                        <a href="/projets/<?= esc($projet['idprojet']) ?>/<?= esc($tache['idtache']) ?>/modification">Modifier</a> |
+                        <a href="<?= base_url('tache/modifier/' . esc($tache['idtache'])) ?>">Modifier</a> |
                         <a href="/suppModif/<?= esc($tache['idtache']) ?>" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette tâche ?')">Supprimer</a>
                     </li>
                 <?php endforeach; ?>
