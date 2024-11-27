@@ -5,16 +5,16 @@ use CodeIgniter\Model;
 
 class TacheModel extends Model
 {
-	protected $table = 'Tache';
-	protected $primaryKey = 'idTache';
+	protected $table = 'tache';
+	protected $primaryKey = 'idtache';
 	protected $allowedFields = [
-		'titre',
-		'description',
-		'echeance',
-		'priorite',
-		'statut',
-		'dateCreation',
-		'idProjet'
+		'titre', 
+		'description', 
+		'echeance', 
+		'priorite', 
+		'statut', 
+		'datecreation', 
+		'idprojet'
 	];
 
 	/**
@@ -94,4 +94,11 @@ class TacheModel extends Model
 		  
 		  
 		  */
+	public function getTachesByProject(int $idProjet): array
+	{
+		return $this->db->table('tache')->where('idprojet', $idProjet)
+			->orderBy('datecreation', 'ASC') // Facultatif : trie les tâches par date de création
+			->get()
+			->getResultArray();
+	}
 }
