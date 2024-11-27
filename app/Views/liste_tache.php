@@ -3,26 +3,6 @@
 		<p>Description : <?= esc($projet['descriptionprojet']) ?></p>
 	</header>
 
-<<<<<<< HEAD
-    <section>
-        <h2>Liste des Tâches</h2>
-        <?php if (!empty($taches)) : ?>
-            <ul>
-                <?php foreach ($taches as $tache) : ?>
-                    <li>
-                        <strong>Tâche:</strong> <?= esc($tache['titre']) ?><br>
-                        <strong>Status:</strong> <?= esc($tache['statut']) ?><br>
-                        <strong>Date limite:</strong> <?= esc($tache['echeance']) ?><br>
-                        <a href="<?= base_url('tache/modifier/' . esc($tache['idtache'])) ?>">Modifier</a> |
-                        <a href="/suppModif/<?= esc($tache['idtache']) ?>" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette tâche ?')">Supprimer</a>
-                    </li>
-                <?php endforeach; ?>
-            </ul>
-        <?php else : ?>
-            <p>Aucune tâche trouvée pour ce projet.</p>
-        <?php endif; ?>
-    </section>
-=======
 	<section>
 		<h2>Liste des Tâches</h2>
 		<?php if (!empty($taches)) : ?>
@@ -113,4 +93,3 @@
 		}
 	};
 </script>
->>>>>>> 9d45cfd (Ajout de la popup de modification)
