@@ -42,7 +42,7 @@ class ProjetController extends BaseController
 		$taches = $tacheModel->getTachesByProject($projet);
 
 		// Charger une vue pour afficher les projets de l'utilisateur
-		echo view('header', ['title' => 'Tâches']);
+		echo view('header', ['title' => 'Taches']);
 		echo view('liste_tache', [
 			'projet' => $projets[$index],
 			'taches' => $taches

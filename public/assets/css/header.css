@@ -1,5 +1,12 @@
 @import url('couleur.css');
 
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Poppins', sans-serif;
+}
+
 header {
     background-color: #f8f9fa; /* Couleur claire pour le fond */
     padding: 10px 20px;

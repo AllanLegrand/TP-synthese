@@ -1,7 +1,4 @@
-<!-- Lien vers la feuille de style -->
-<link href="/assets/css/listTache.css" rel="stylesheet" type="text/css">
-
-<section>
+<section class="container mt-5">
     <!-- Bandeau en haut du projet -->
     <div class="project-header d-flex justify-content-between align-items-center bg-violet p-4 rounded mb-4">
         <div>

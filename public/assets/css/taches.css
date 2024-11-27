@@ -1,4 +1,12 @@
 /* Bandeau du projet - Minimaliste et fin */
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Poppins', sans-serif;
+}
+
 .project-header {
     background-color: #f4f4f4; /* Fond neutre pour le bandeau */
     padding: 5px 20px; /* Bandeau plus fin */
