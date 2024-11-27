@@ -6,7 +6,7 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 // Authentification
-$routes->get('/', 'SignupController::index'); // Page d'accueil ou formulaire d'inscription
+$routes->get('/', 'Accueil::index'); // Page d'accueil ou formulaire d'inscription
 $routes->get('/signup', 'SignupController::index'); // Formulaire d'inscription
 $routes->match(['get', 'post'], '/signup/store', 'SignupController::store'); // Stocker les données de l'inscription
 
@@ -30,3 +30,4 @@ $routes->get('/projets/(:any)', 'ProjetController::tache/$1', ['filter' => 'auth
 
 $routes->post('/modifierTache', 'ProjetController::modifierTache');
 
+$routes->post('/creer_projet', 'CreerProjetController::ajouter');
