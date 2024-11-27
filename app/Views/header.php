@@ -23,7 +23,7 @@
                 <!-- Boutons à gauche -->
                 <div class="d-flex align-items-center">
                     <!-- Lien "Projets" -->
-                    <button class="btn btn-secondary" onclick="openModal()">Projets</button>
+                    <button class="btn btn-secondary" onclick="location.href='/projets';">Projets</button>
                     <!-- Bouton "Créer" -->
                     <button class="btn btn-primary" onclick="openModal()">Créer</button>
                 </div>
