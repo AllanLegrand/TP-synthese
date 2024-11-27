@@ -25,3 +25,6 @@ $routes->post('/reset-password/updatePassword', 'ResetPasswordController::update
 $routes-> get('/Accueil','Accueil::index');
 
 $routes->get('/Projets','ProjetController::index', ['filter' => 'authGuard']);
+$routes->get('/projets', 'ProjetController::index', ['filter' => 'authGuard']); // Page de profil protégée par un filtre
+$routes->get('/projets/(:any)', 'ProjetController::tache/$1', ['filter' => 'authGuard']); // Page de profil protégée par un filtre
+

@@ -22,7 +22,8 @@ class SigninController extends BaseController
 			if ($authenticatePassword) {
 				$ses_data = [
 					'idutil' => $data['idutil'],
-					'name' => $data['nom'],
+					'nom' => $data['nom'],
+					'prenom' => $data['prenom'],
 					'email' => $data['mail'],
 					'isLoggedIn' => TRUE
 				];
