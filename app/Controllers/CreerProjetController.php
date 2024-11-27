@@ -7,12 +7,6 @@ use App\Models\GroupeModele;
 
 class CreerProjetController extends BaseController
 {
-    public function creer()
-    {
-        // Afficher la vue du formulaire de création de projet
-        return view('creer_projet');
-    }
-
     public function ajouter()
     {
         $idUtil = session()->get('idutil');

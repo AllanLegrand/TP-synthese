@@ -23,9 +23,9 @@
                 <!-- Boutons à gauche -->
                 <div class="d-flex align-items-center">
                     <!-- Lien "Projets" -->
-                    <a class="nav-link me-3" href="<?= base_url('Projets') ?>">Projets</a>
+                    <button class="btn btn-secondary" onclick="openModal()">Projets</button>
                     <!-- Bouton "Créer" -->
-                    <button class="btn btn-primary" onclick="location.href='<?= base_url('creer') ?>';">Créer</button>
+                    <button class="btn btn-primary" onclick="openModal()">Créer</button>
                 </div>
                 <!-- Barre de recherche + icône utilisateur -->
                 <div class="ms-auto d-flex align-items-center">
@@ -37,5 +37,26 @@
             </div>
         </nav>
     </header>
-    <!-- Contenu principal -->
-    <main class="container mt-4">
+
+    <!-- Fenêtre modale -->
+    <div id="popupModal" class="popup-modal">
+        <div class="popup-content">
+            <h2>Créer un Projet</h2>
+            <!-- Formulaire ou contenu pour la création de projet -->
+            <form action="<?= base_url('/creer_projet') ?>" method="post">
+                <div class="mb-3">
+                    <label for="titreprojet" class="form-label">Titre du projet</label>
+                    <input type="text" class="form-control" id="titreprojet" name="titreprojet" required>
+                </div>
+                <div class="mb-3">
+                    <label for="descriptionprojet" class="form-label">Description</label>
+                    <textarea class="form-control" id="descriptionprojet" name="descriptionprojet" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="btn popup-creer">Créer</button>
+                <button type="button" class="btn popup-annuler" onclick="closeModal()">Annuler</button>
+            </form>
+        </div>
+    </div>
+    <script src="/assets/js/creer_projet.js"></script>
+</body>
+</html>
