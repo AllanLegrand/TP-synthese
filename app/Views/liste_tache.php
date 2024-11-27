@@ -19,7 +19,7 @@
                     <?php if ($tache['statut'] === 'A Faire') : ?>
                         <div class="task-card">
                             <h4><?= esc($tache['titre']) ?></h4>
-                            <p><strong>Date limite:</strong> <?= esc($tache['echeance']) ?></p>
+                            <p><strong>Date limite : </strong><?= esc($tache['echeance']) ?></p>
                             <div class="task-actions">
                                 <img src="/assets/img/pencil.png" alt="Modifier" class="icon"
                                      onclick="openEditModal(<?= htmlspecialchars(json_encode($tache), ENT_QUOTES, 'UTF-8') ?>)" />
@@ -39,7 +39,7 @@
                     <?php if ($tache['statut'] === 'En cours') : ?>
                         <div class="task-card">
                             <h4><?= esc($tache['titre']) ?></h4>
-                            <p><strong>Date limite:</strong> <?= esc($tache['echeance']) ?></p>
+                            <p><strong>Date limite : </strong><?= esc($tache['echeance']) ?></p>
                             <div class="task-actions">
                                 <img src="/assets/img/pencil.png" alt="Modifier" class="icon"
                                      onclick="openEditModal(<?= htmlspecialchars(json_encode($tache), ENT_QUOTES, 'UTF-8') ?>)" />
@@ -59,7 +59,7 @@
                     <?php if ($tache['statut'] === 'Terminée') : ?>
                         <div class="task-card">
                             <h4><?= esc($tache['titre']) ?></h4>
-                            <p><strong>Date limite:</strong> <?= esc($tache['echeance']) ?></p>
+                            <p><strong>Date limite : </strong><?= esc($tache['echeance']) ?></p>
                             <div class="task-actions">
                                 <img src="/assets/img/pencil.png" alt="Modifier" class="icon"
                                      onclick="openEditModal(<?= htmlspecialchars(json_encode($tache), ENT_QUOTES, 'UTF-8') ?>)" />

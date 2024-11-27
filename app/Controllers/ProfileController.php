@@ -34,6 +34,9 @@ class ProfileController extends BaseController
         $session = session();
         $session->destroy(); // Détruire toutes les données de session
 
+        helper('cookie');
+        delete_cookie('ci_session'); // Supprimer le cookie de session
+
         return redirect()->to('/signin')->with('msg', 'Vous êtes maintenant déconnecté.');
     }
 

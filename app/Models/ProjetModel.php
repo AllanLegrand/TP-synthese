@@ -17,12 +17,11 @@ class ProjetModel extends Model
      */
     public function getProjectsByUser(int $idUtil): array
     {
-        return $this->db->table('projet')
-            ->select('projet.*')
-            ->join('groupe', 'groupe.idprojet = projet.idprojet')
-            ->where('groupe.idutil', $idUtil)
-            ->get()
-            ->getResultArray();
+        return $this->db->table('projet')->select('projet.*, COUNT(tache.idtache) AS totalTaches, SUM(CASE WHEN tache.statut = \'Terminée\' THEN 1 ELSE 0 END) AS totalTachesTerminees')
+        ->join('groupe', 'groupe.idprojet = projet.idprojet')
+        ->join('tache', 'tache.idprojet = projet.idprojet', 'left')
+        ->where('groupe.idutil', $idUtil)
+		->groupBy('projet.idprojet')->get()->getResultArray();
     }
 
 	/**

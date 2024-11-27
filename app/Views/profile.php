@@ -9,7 +9,8 @@
 
 			<!-- Bouton pour afficher la popup -->
 			<button onclick="openModal()">Modifier mes informations</button>
-			<button type="button" class="deconnexion">Se déconnecter</button>
+			<!-- appele de la fonction deconnexion dans le controller -->
+			<a href="/profile/logout"><button type="button" class="deconnexion">Se déconnecter</button></a>
 		</div>
 	</main>
 

@@ -9,7 +9,7 @@
 
                     <p>
                         <strong>Tâches :</strong> 
-                        <?= "1/8" /*esc($projet['tachesterminees']) ?>/<?= esc($projet['totaltaches'])*/?>
+                        <?= esc($projet['totaltachesterminees']) ?>/<?= esc($projet['totaltaches'])?>
                     </p>
                     <a href="<?= base_url('projets/' . $projet['idprojet']) ?>" class="btn btn-primary">Voir Détails</a>
                 </div>
