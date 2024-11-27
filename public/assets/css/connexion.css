@@ -5,88 +5,147 @@ body, html {
     margin: 0;
     padding: 0;
     height: 100%;
+    display: flex;
     font-family: 'Poppins', sans-serif;
+}
+
+/* Conteneur principal */
+.signin-container {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+}
+
+/* Partie gauche : Fond violet avec logo centré */
+.left-side {
+    flex: 1;
+    background-color: var(--violetclair); /* Couleur violette */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.left-side img {
+    max-width: 200px;
+    height: auto;
+}
+
+/* Partie droite : Formulaire */
+.right-side {
+    flex: 1;
+    background-color: var(--blanc); /* Couleur blanche */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Formulaire */
 form {
-    height: 520px;
     width: 400px;
-    background-color: var(--blanc);
-    transform: translate(-50%, -50%);
-    left: 50%;
-    border-radius: 10px;
-    backdrop-filter: blur(10px);
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
-    padding: 50px 35px;
-    position: relative;
-    top: 380px;
-}
-
-form * {
-    color: var(--violetclair);
-    letter-spacing: 0.5px;
-    outline: none;
-    border: none;
+    padding: 40px;
+    background: #f8f8f8; /* Ajout d'un fond gris clair pour contraste */
+    border-radius: 15px;
+    border: 1px solid #ddd; /* Bordure légère pour renforcer la distinction */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15); /* Ombre plus visible */
 }
 
 form h3 {
-    font-size: 32px;
-    font-weight: 500;
-    line-height: 42px;
     text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    color: var(--violetclair);
 }
 
-label {
-    display: block;
-    margin-top: 30px;
-    font-size: 16px;
-    font-weight: 500;
-}
-
-input {
-    display: block;
-    height: 50px;
-    width: 100%;
-    background-color: var(--blanc);
-	border: 2px solid var(--violetclair);
-    border-radius: 6px;
-    margin-top: 8px;
+form label {
     font-size: 14px;
-    font-weight: 300;
-    padding-left: 10px;
-    box-sizing: border-box;
-    color:black;
-}
-
-::placeholder {
-    color: var(--violetfoncer);
-}
-
-button {
-    margin-top: 50px;
-    width: 100%;
-    background-color: var(--violetclair);
-    color:  var(--blanc);;
-    padding: 15px 0;
-    font-size: 18px;
     font-weight: 600;
-    border-radius: 5px;
-    cursor: pointer;
+    margin-bottom: 8px;
+    margin-top: 20px;
+    color: var(--violetfoncer);
+    display: block;
 }
 
-.signup {
+form input {
+    width: 100%;
+    height: 50px;
+    border: 2px solid var(--violetclair);
+    border-radius: 8px;
+    padding: 0 15px;
+    font-size: 14px;
+    color: black;
+    background-color: #fdfdfd;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    box-sizing: border-box;
+    margin-bottom: 8px;
+}
+
+form input:focus {
+    border-color: var(--violetfoncer);
+    box-shadow: 0 0 8px rgba(97, 77, 228, 0.5); /* Halo violet au focus */
+    outline: none;
+}
+
+/* Boutons */
+form button {
+    width: 100%;
+    height: 50px;
+    border-radius: 8px;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+form button[type="submit"] {
+    background-color: var(--violetclair);
+    color: var(--blanc);
+}
+
+form button[type="submit"]:hover {
+    background-color: var(--violetfoncer);
+}
+
+form .signup {
     background-color: var(--blanc);
-    color:  var(--violetclair);
+    color: var(--violetclair);
     border: 2px solid var(--violetclair);
     margin-top: 10px;
 }
 
-button:hover {
-    background-color: var(--violetfoncer);
+form .signup:hover {
+    background-color: var(--violetclair);
+    color: var(--blanc);
 }
 
-.signup:hover {
-    background-color: var(--bleu);
+/* Lien Mot de passe oublié */
+form a {
+    display: block;
+    margin-top: 0px;
+    text-align: left;
+    font-size: 14px;
+    color: var(--violetclair);
+    text-decoration: none;
+    margin-bottom: 20px;
+}
+
+form a:hover {
+    text-decoration: underline;
+}
+
+/* Media Queries pour les petits écrans */
+@media (max-width: 768px) {
+    .signin-container {
+        flex-direction: column;
+    }
+
+    .left-side {
+        flex: none;
+        width: 100%;
+    }
+
+    form {
+        max-width: 100%;
+    }
 }
