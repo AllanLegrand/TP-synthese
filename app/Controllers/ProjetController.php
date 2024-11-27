@@ -48,4 +48,22 @@ class ProjetController extends BaseController
 			'taches' => $taches
 		]);
 	}
+
+	public function modifierTache()
+	{
+		$tacheModel = new TacheModel();
+
+		$data = [
+			'titre' => $this->request->getPost('titre'),
+			'statut' => $this->request->getPost('statut'),
+			'echeance' => $this->request->getPost('echeance')
+		];
+		$idtache = $this->request->getPost('idtache');
+
+		$tacheModel->update($idtache, $data);
+
+		return redirect()->back()->with('message', 'Tâche modifiée avec succès.');
+	}
+
+
 }
