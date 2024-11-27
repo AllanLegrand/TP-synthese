@@ -149,3 +149,13 @@ form a:hover {
         max-width: 100%;
     }
 }
+/* Input avec erreur */
+.error-input {
+    border: 2px solid red;
+    background-color: #ffe6e6;
+}
+
+.error-input::placeholder {
+    color: red;
+    font-weight: bold;
+}

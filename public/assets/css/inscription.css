@@ -81,6 +81,18 @@ form input {
     margin-bottom: 8px;
 }
 
+/* Style pour les champs en cas d'erreur */
+.error-input {
+    border: 2px solid red; /* Bordure rouge pour signaler une erreur */
+    background-color: #ffe6e6; /* Optionnel : une couleur de fond légèrement rouge */
+   
+}
+
+.error-input::placeholder {
+    color: red; /* Placeholder rouge pour mettre en avant l'erreur */
+    font-weight: bold;
+}
+
 form input:focus {
     border-color: var(--violetfoncer);
     box-shadow: 0 0 8px rgba(97, 77, 228, 0.5); /* Halo violet au focus */
