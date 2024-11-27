@@ -76,7 +76,28 @@
             </div>
         </div>
     <?php else : ?>
-        <p>Aucune tâche trouvée pour ce projet.</p>
+		<div class="task-columns">
+            <!-- À Faire -->
+            <div class="task-column a-faire">
+                <h3>À Faire</h3>
+				<p>Aucune tâche trouvée pour ce projet.</p>
+				<button class="btn btn-primary">Ajouter une tâche</button>
+            </div>
+            
+            <!-- En Cours -->
+            <div class="task-column en-cours">
+                <h3>En Cours</h3>
+				<p>Aucune tâche trouvée pour ce projet.</p>
+				<button class="btn btn-primary">Ajouter une tâche</button>
+            </div>
+            
+            <!-- Terminées -->
+            <div class="task-column terminee">
+                <h3>Terminées</h3>
+				<p>Aucune tâche trouvée pour ce projet.</p>
+				<button class="btn btn-primary">Ajouter une tâche</button>
+            </div>
+        </div>
     <?php endif; ?>
 </section>
 
