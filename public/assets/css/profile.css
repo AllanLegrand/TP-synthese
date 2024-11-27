@@ -1,6 +1,5 @@
 @import url('couleur.css');
 
-/* Conteneur principal */
 body {
     background-color: var(--bleu);
 }
@@ -10,23 +9,21 @@ main {
     justify-content: center; /* Centre horizontalement */
     align-items: flex-start; /* Aligne le contenu en haut */
     height: 100vh;
-    background-color: var(--bleu);
-    font-family: 'Poppins', sans-serif;
-    margin: 0;
 }
 
 /* Carte de profil */
 .profile-card {
-    width: 400px; /* Largeur du cadre */
+    width: 600px; /* Largeur du cadre */
     background-color: var(--blanc);
     border-radius: 10px;
     backdrop-filter: blur(10px);
     border: 2px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
     text-align: center;
+    margin-top: 100px;
+    padding: 20px;
 }
 
-/* Titres */
 .profile-card h3 {
     font-size: 28px;
     font-weight: 500;
@@ -45,18 +42,16 @@ main {
 /* Boutons */
 .profile-card button {
     width: 100%;
-    padding: 12px;
-    font-size: 16px;
-    font-weight: 600;
-    border-radius: 6px;
+    height: 50px;
+    border-radius: 8px;
     border: none;
+    font-size: 16px;
+    font-weight: bold;
     cursor: pointer;
-    margin-top: 15px;
     transition: all 0.3s ease;
 }
 
-.profile-card button[type="submit"],
-.profile-card button:not(.cancel) {
+.profile-card button {
     background-color: var(--violetclair);
     color: var(--blanc);
 }
@@ -65,32 +60,61 @@ main {
     background-color: var(--violetfoncer);
 }
 
-/* Bouton Changer mot de passe */
-.profile-card a button {
+.profile-card .deconnexion {
     background-color: var(--blanc);
     color: var(--violetclair);
     border: 2px solid var(--violetclair);
+    margin-top: 10px;
 }
 
-.profile-card a button:hover {
+.profile-card .deconnexion:hover {
     background-color: var(--violetclair);
     color: var(--blanc);
 }
 
-/* Formulaire d'édition */
-form {
-    margin-top: 20px;
+/* Popup (modal) */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-form label {
+.modal.d-none {
+    display: none;
+}
+
+.modal-content {
+    background-color: var(--blanc);
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content h3 {
+    font-size: 22px;
+    font-weight: bold;
+    color: var(--violetclair);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.modal-content label {
     display: block;
     margin-bottom: 8px;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 500;
     color: var(--violetfoncer);
 }
 
-form input {
+.modal-content input {
     width: 100%;
     height: 45px;
     border: 2px solid var(--violetclair);
@@ -103,14 +127,35 @@ form input {
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-form input:focus {
+.modal-content input:focus {
     border-color: var(--violetfoncer);
     box-shadow: 0 0 8px rgba(97, 77, 228, 0.5);
     outline: none;
 }
 
-/* Placeholder */
-form input::placeholder {
+.modal-content button {
+    width: 100%;
+    height: 50px;
+    border-radius: 8px;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: var(--violetclair);
+    color: var(--blanc);
+    transition: all 0.3s ease;
+}
+
+.modal-content button:hover {
+    background-color: var(--violetfoncer);
+}
+
+.modal-content .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    font-weight: bold;
     color: var(--violetfoncer);
-    opacity: 0.8;
+    cursor: pointer;
 }

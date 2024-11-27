@@ -24,6 +24,7 @@ class ProfileController extends BaseController
         }
 
 		echo view ('header', ['title' => 'profile']);
+        echo view('footer');
         // Charger la vue du profil avec les données utilisateur
         return view('profile', ['user' => $user]);
     }
