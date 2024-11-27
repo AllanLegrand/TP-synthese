@@ -3,11 +3,9 @@ namespace App\Models;
 use CodeIgniter\Model;
 class GroupeModele extends Model
 {
-	protected $table = 'Groupe';
-	protected $primaryKey = [
-		'idUtil',
-		'idProjet'
-	];
+	protected $table = 'groupe';
+    protected $primaryKey = ['idutil', 'idprojet'];
+    protected $allowedFields = ['idutil', 'idprojet'];
 
 	/**
 	 * Ajoute un nouveau Groupe.
@@ -20,6 +18,14 @@ class GroupeModele extends Model
 	{
 		return $this->insert($data);
 	}
+
+	public function ajouterUtilisateurAuProjet(int $idUtil, int $idProjet)
+    {
+        return $this->insert([
+            'idutil' => $idUtil,
+            'idprojet' => $idProjet
+        ]);
+    }
 
 	/**
 	 * Met à jour un Groupe existant.
