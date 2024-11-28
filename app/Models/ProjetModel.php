@@ -78,4 +78,20 @@ class ProjetModel extends Model
 	{
 		return $this->delete($idProjet);
 	}
+	
+	public function getUsersByProject(int $idProjet): array
+	{
+		return $this->db->table('groupe')
+			->select('utilisateur.idutil, utilisateur.nom, utilisateur.prenom, utilisateur.mail')
+			->join('utilisateur', 'groupe.idutil = utilisateur.idutil')
+			->where('groupe.idprojet', $idProjet)
+			->get()
+			->getResultArray();
+	}
+
+	public function addUserToProject($idProjet, $idUtil)
+	{
+		return $this->db->table('groupe')
+			->insert(['idprojet' => $idProjet, 'idutil' => $idUtil]);
+	}
 }
