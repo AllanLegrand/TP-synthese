@@ -5,7 +5,7 @@
 			<h1>Projet : <?= esc($projet['titreprojet']) ?></h1>
 			<p>Description : <?= esc($projet['descriptionprojet']) ?></p>
 		</div>
-		<button class="btn btn-share">Partager</button>
+		<button class="btn btn-share" onclick="openSharePopup()">Partager</button>
 	</div>
 
 	<h2>Liste des Tâches</h2>
@@ -186,6 +186,38 @@
 
 			<button type="submit">Créer</button>
 		</form>
+	</div>
+</div>
+
+<script src="/assets/js/tache_util.js"></script>
+
+<!-- Popup Bouton partager -->
+<div id="popupShare" class="popup-share" style="display: none;">
+	<div class="popup-share-content">
+		<span class="popup-share-close" onclick="closeSharePopup()">&times;</span>
+		<h2>Partager un projet</h2>
+		<form id="shareProjectForm" method="POST" action="/projet/partager">
+			<input type="hidden" name="idprojet" value="<?= esc($projet['idprojet']) ?>">
+			<div>
+				<label for="popupShareUserSearch">Ajouter un utilisateur :</label>
+				<input type="text" id="popupShareUserSearch" name="mailUser" placeholder="Entrez le mail de l'utilisateur..." required>
+			</div>
+			<button type="submit" class="btn btn-primary">Partager</button>
+		</form>
+
+		<h3>Utilisateurs du projet :</h3>
+		<ul id="popupShareUserList">
+			<?php if (!empty($utilisateurs)): ?>
+				<?php foreach ($utilisateurs as $utilisateur): ?>
+					<li>
+						<?= esc($utilisateur['prenom']) ?> <?= esc($utilisateur['nom']) ?> 
+						<span style="color: #888; font-size: 0.9em;">| <?= esc($utilisateur['mail']) ?></span>
+					</li>
+				<?php endforeach; ?>
+			<?php else: ?>
+				<li>Aucun utilisateur dans ce projet.</li>
+			<?php endif; ?>
+		</ul>
 	</div>
 </div>
 
