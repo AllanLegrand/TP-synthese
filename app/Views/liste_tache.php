@@ -44,7 +44,7 @@
 								<img src="/assets/img/pencil.png" alt="Modifier" class="icon"
 									onclick="openEditModal(<?= htmlspecialchars(json_encode($tache), ENT_QUOTES, 'UTF-8') ?>)" />
 								<img src="/assets/img/remove.png" alt="Supprimer" class="icon"
-									onclick="if (confirm('Êtes-vous sûr de vouloir supprimer cette tâche ?')) location.href='//supprimerTache//<?= esc($tache['idtache']) ?>';" />
+									onclick="if (confirm('Êtes-vous sûr de vouloir supprimer cette tâche ?')) location.href='/supprimerTache/<?= esc($tache['idtache']) ?>';" />
 							</div>
 						</div>
 					<?php endif; ?>
