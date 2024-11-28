@@ -49,7 +49,7 @@
 						</div>
 					<?php endif; ?>
 				<?php endforeach; ?>
-				<button class="btn btn-primary">Ajouter une tâche</button>
+				<button class="btn btn-primary" onclick="openAddModal()">Ajouter une tâche</button>
 			</div>
 
 			<!-- Terminées -->
@@ -69,7 +69,7 @@
 						</div>
 					<?php endif; ?>
 				<?php endforeach; ?>
-				<button class="btn btn-primary">Ajouter une tâche</button>
+				<button class="btn btn-primary" onclick="openAddModal()">Ajouter une tâche</button>
 			</div>
 		</div>
 	<?php else: ?>
@@ -99,58 +99,94 @@
 </section>
 
 <!-- Modal -->
+<!-- Modal -->
 <div id="editTaskModal" style="display: none;">
 	<div class="modal-content">
 		<span id="closeModal" style="cursor: pointer;">&times;</span>
 		<h2>Modifier la Tâche</h2>
 		<form id="editTaskForm" method="POST" action="/modifierTache">
 			<input type="hidden" name="idtache" id="modalIdTache">
+
 			<div>
 				<label for="modalTitre">Titre :</label>
 				<input type="text" id="modalTitre" name="titre" required>
 			</div>
+
 			<div>
-				<label for="modalStatut">Statut :</label>
-				<select id="modalStatut" name="statut" required>
-					<option value="En cours">En cours</option>
-					<option value="Terminée">Terminée</option>
-					<option value="A Faire">A Faire</option>
-				</select>
+				<label for="modalDescription">Description :</label>
+				<textarea id="modalDescription" name="description" required></textarea>
 			</div>
+
 			<div>
 				<label for="modalEcheance">Date limite :</label>
 				<input type="date" id="modalEcheance" name="echeance" required>
 			</div>
+
+			<div>
+				<label for="modalPriorite">Priorité :</label>
+				<select id="modalPriorite" name="priorite" required>
+					<option value="Faible">Faible</option>
+					<option value="Moyenne">Moyenne</option>
+					<option value="Forte">Forte</option>
+				</select>
+			</div>
+
+			<div>
+				<label for="modalStatut">Statut :</label>
+				<select id="modalStatut" name="statut" required>
+					<option value="A Faire">À Faire</option>
+					<option value="En cours">En cours</option>
+					<option value="Terminée">Terminée</option>
+				</select>
+			</div>
+
 			<button type="submit">Enregistrer</button>
 		</form>
 	</div>
 </div>
 
+
 <div id="addTaskModal" style="display: none;">
-    <div class="modal-content">
-        <span id="closeAddModal" style="cursor: pointer;">&times;</span>
-        <h2>Ajouter une Tâche</h2>
-        <form id="addTaskForm" method="POST" action="/ajouterTache">
-            <input type="hidden" name="idprojet" value="<?= esc($projet['idprojet']) ?>">
-            <div>
-                <label for="addTitre">Titre :</label>
-                <input type="text" id="addTitre" name="titre" required>
-            </div>
-            <div>
-                <label for="addStatut">Statut :</label>
-                <select id="addStatut" name="statut" required>
-                    <option value="A Faire">A Faire</option>
-                    <option value="En cours">En cours</option>
-                    <option value="Terminée">Terminée</option>
-                </select>
-            </div>
-            <div>
-                <label for="addEcheance">Date limite :</label>
-                <input type="date" id="addEcheance" name="echeance" required>
-            </div>
-            <button type="submit">Ajouter</button>
-        </form>
-    </div>
+	<div class="modal-content">
+		<span id="closeAddModal" style="cursor: pointer;">&times;</span>
+		<h2>Ajouter une Tâche</h2>
+		<form id="addTaskForm" method="POST" action="/ajouterTache">
+			<div>
+				<label for="addTitre">Titre :</label>
+				<input type="text" id="addTitre" name="titre" required>
+			</div>
+
+			<div>
+				<label for="addDescription">Description :</label>
+				<textarea id="addDescription" name="description" required></textarea>
+			</div>
+
+			<div>
+				<label for="addEcheance">Date limite :</label>
+				<input type="date" id="addEcheance" name="echeance" required>
+			</div>
+
+			<div>
+				<label for="addPriorite">Priorité :</label>
+				<select id="addPriorite" name="priorite" required>
+					<option value="Faible">Faible</option>
+					<option value="Moyenne">Moyenne</option>
+					<option value="Forte">Forte</option>
+				</select>
+			</div>
+
+			<div>
+				<label for="addStatut">Statut :</label>
+				<select id="addStatut" name="statut" required>
+					<option value="A Faire">À Faire</option>
+					<option value="En cours">En cours</option>
+					<option value="Terminée">Terminée</option>
+				</select>
+			</div>
+
+			<button type="submit">Créer</button>
+		</form>
+	</div>
 </div>
 
 <script>
@@ -158,12 +194,15 @@
 		// Remplir les champs du formulaire avec les données de la tâche
 		document.getElementById('modalIdTache').value = tache.idtache;
 		document.getElementById('modalTitre').value = tache.titre;
-		document.getElementById('modalStatut').value = tache.statut;
+		document.getElementById('modalDescription').value = tache.description;
 		document.getElementById('modalEcheance').value = tache.echeance;
+		document.getElementById('modalPriorite').value = tache.priorite;
+		document.getElementById('modalStatut').value = tache.statut;
 
-		// Afficher la popup
+		// Afficher le modal
 		document.getElementById('editTaskModal').style.display = 'flex';
 	}
+
 
 	document.getElementById('closeModal').onclick = function () {
 		document.getElementById('editTaskModal').style.display = 'none';
@@ -175,18 +214,17 @@
 		}
 	};
 
+	document.getElementById('closeAddModal').onclick = function () {
+		document.getElementById('addTaskModal').style.display = 'none';
+	};
+
+	window.onclick = function (event) {
+		if (event.target === document.getElementById('addTaskModal')) {
+			document.getElementById('addTaskModal').style.display = 'none';
+		}
+	};
+
 	function openAddModal() {
-        document.getElementById('addTaskModal').style.display = 'flex';
-    }
-
-    // Fermer le modal
-    document.getElementById('closeAddModal').onclick = function () {
-        document.getElementById('addTaskModal').style.display = 'none';
-    };
-
-    window.onclick = function (event) {
-        if (event.target === document.getElementById('addTaskModal')) {
-            document.getElementById('addTaskModal').style.display = 'none';
-        }
-    };
+		document.getElementById('addTaskModal').style.display = 'flex';
+	}
 </script>

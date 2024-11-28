@@ -56,15 +56,21 @@ class ProjetController extends BaseController
 
 		$data = [
 			'titre' => $this->request->getPost('titre'),
+			'description' => $this->request->getPost('description'),
+			'echeance' => $this->request->getPost('echeance'),
+			'priorite' => $this->request->getPost('priorite'),
 			'statut' => $this->request->getPost('statut'),
-			'echeance' => $this->request->getPost('echeance')
 		];
 		$idtache = $this->request->getPost('idtache');
 
-		$tacheModel->update($idtache, $data);
-
-		return redirect()->back()->with('message', 'Tâche modifiée avec succès.');
+		// Mise à jour de la tâche dans la base de données
+		if ($tacheModel->update($idtache, $data)) {
+			return redirect()->back()->with('message', 'Tâche modifiée avec succès.');
+		} else {
+			return redirect()->back()->with('error', 'Erreur lors de la modification de la tâche.');
+		}
 	}
+
 
 	public function supprimerTache($idtache)
 	{
@@ -93,21 +99,23 @@ class ProjetController extends BaseController
 	{
 		$tacheModel = new TacheModel();
 
-		// Données provenant du formulaire
 		$data = [
 			'titre' => $this->request->getPost('titre'),
-			'statut' => $this->request->getPost('statut'),
+			'description' => $this->request->getPost('description'),
 			'echeance' => $this->request->getPost('echeance'),
-			'idprojet' => $this->request->getPost('idprojet'), // ID du projet associé
+			'priorite' => $this->request->getPost('priorite'),
+			'statut' => $this->request->getPost('statut'),
+			'datecreation' => $this->request->getPost('datecreation')
 		];
 
-		// Insérer la tâche dans la base de données
+		// Insertion dans la base de données
 		if ($tacheModel->insert($data)) {
 			return redirect()->back()->with('message', 'Tâche ajoutée avec succès.');
 		} else {
 			return redirect()->back()->with('error', 'Erreur lors de l\'ajout de la tâche.');
 		}
 	}
+
 
 
 }
