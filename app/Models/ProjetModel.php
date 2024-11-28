@@ -25,6 +25,26 @@ class ProjetModel extends Model
     }
 
 	/**
+     * Récupère les projets d'un utilisateur donné a partir d'un titre donné.
+     *
+     * @param int $idUtil ID de l'utilisateur
+	 * @param string $title Titre du projet
+     * @return array Liste des projets associés à cet utilisateur et au titre donné
+     */
+	public function getProjectsByTitle(int $idUtil, string $title): array
+	{
+		return $this->db->table('projet')->select('projet.*')
+			->join('groupe', 'groupe.idprojet = projet.idprojet')
+			->join('tache', 'tache.idprojet = projet.idprojet', 'left')
+			->where('groupe.idutil', $idUtil)
+			->like('LOWER(titreprojet)', strtolower($title)) // Utilisez 'ILIKE' dans PostgreSQL ou ici 'LIKE' avec insensibilité à la casse
+			->groupBy('projet.idprojet')
+			->get()
+			->getResultArray();
+	}
+	
+
+	/**
 	 * Ajoute un nouveau projet.
 	 *
 	 * @param array $data Données du projet à ajouter

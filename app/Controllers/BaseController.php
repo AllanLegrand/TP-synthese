@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use App\Models\ProjetModel;
+use App\Models\TacheModel;
 use CodeIgniter\Controller;
 use CodeIgniter\HTTP\CLIRequest;
 use CodeIgniter\HTTP\IncomingRequest;
@@ -55,4 +57,26 @@ abstract class BaseController extends Controller
 
         // E.g.: $this->session = \Config\Services::session();
     }
+
+    public function rechercheProjets()
+    {
+        // Récupération de la recherche
+        $query = $this->request->getGet('query');
+        
+        if (empty($query)) {
+            return $this->response->setJSON(['message' => 'Aucune recherche spécifiée'])->setStatusCode(400);
+        }
+    
+        // Récupération de l'ID de l'utilisateur (assurez-vous que 'idutil' est bien stocké dans la session)
+        $idUtil = session('idutil');
+    
+        // Utilisation du modèle ProjetModel pour récupérer les projets
+        $projetModel = new ProjetModel();
+        $projets = $projetModel->getProjectsByTitle($idUtil, $query);
+    
+        // Si des projets sont trouvés, on les renvoie
+        return $this->response->setJSON($projets);
+    }
+    
+
 }

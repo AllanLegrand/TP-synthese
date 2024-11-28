@@ -28,8 +28,9 @@
                     <button class="btn btn-primary" onclick="openModal()">Créer</button>
                 </div>
                 <!-- Barre de recherche + icône utilisateur -->
-                <div class="ms-auto d-flex align-items-center">
-                    <input type="text" class="form-control search-bar me-2" placeholder="Rechercher...">
+                <div class="ms-auto d-flex align-items-center position-relative">
+                    <input type="text" class="form-control search-bar me-2" placeholder="Rechercher..." oninput="searchProjects(this.value)">
+                    <div id="searchResults" class="search-results"></div>
                     <a href="<?= base_url('profile') ?>">
                         <img src="/assets/img/user.png" alt="Utilisateur" class="user-icon">
                     </a>
@@ -57,6 +58,5 @@
             </form>
         </div>
     </div>
-    <script src="/assets/js/creer_projet.js"></script>
-</body>
-</html>
+    <script src="/assets/js/header.js"></script>
+

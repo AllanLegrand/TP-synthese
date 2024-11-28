@@ -62,6 +62,7 @@ header {
     min-width: 120px;
 }
 
+/*--------------------------------------------------*/
 /* Bouton primaire */
 .btn-primary {
     background-color: #614DE4; /* Couleur principale (violet foncé) */
@@ -159,3 +160,49 @@ header {
 .popup-annuler:hover {
     background-color: var(--bleu);
 }
+
+/*--------------------------------------------------*/
+/* Conteneur de résultats de recherche */
+/* Conteneur de résultats de recherche (invisible au départ) */
+.search-results {
+    position: absolute;
+    top: 100%;  /* Placer juste en dessous du champ de recherche */
+    left: 0;
+    width: 100%;
+    max-height: 300px;  /* Limite la hauteur des résultats pour éviter qu'ils ne soient trop longs */
+    overflow-y: auto;  /* Ajoute une barre de défilement si trop de résultats */
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;  /* S'assurer que la liste est au-dessus des autres éléments */
+    display: none;  /* Invisible par défaut */
+}
+
+/* Style des éléments de la liste */
+.search-results .result-item {
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Survol des éléments */
+.search-results .result-item:hover {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+/* Message lorsqu'aucun projet n'est trouvé */
+.search-results .no-results {
+    padding: 10px;
+    color: #888;
+    font-style: italic;
+    text-align: center;
+}
+
+/* Résultats sélectionnés */
+.search-results .selected {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
