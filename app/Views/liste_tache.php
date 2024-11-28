@@ -29,7 +29,7 @@
 						</div>
 					<?php endif; ?>
 				<?php endforeach; ?>
-				<button class="btn btn-primary">Ajouter une tâche</button>
+				<button class="btn btn-primary" onclick="openAddModal()">Ajouter une tâche</button>
 			</div>
 
 			<!-- En Cours -->
@@ -44,7 +44,7 @@
 								<img src="/assets/img/pencil.png" alt="Modifier" class="icon"
 									onclick="openEditModal(<?= htmlspecialchars(json_encode($tache), ENT_QUOTES, 'UTF-8') ?>)" />
 								<img src="/assets/img/remove.png" alt="Supprimer" class="icon"
-									onclick="if (confirm('Êtes-vous sûr de vouloir supprimer cette tâche ?')) location.href='/supprimerTache/<?= esc($tache['idtache']) ?>';" />
+									onclick="if (confirm('Êtes-vous sûr de vouloir supprimer cette tâche ?')) location.href='//supprimerTache//<?= esc($tache['idtache']) ?>';" />
 							</div>
 						</div>
 					<?php endif; ?>
@@ -126,6 +126,33 @@
 	</div>
 </div>
 
+<div id="addTaskModal" style="display: none;">
+    <div class="modal-content">
+        <span id="closeAddModal" style="cursor: pointer;">&times;</span>
+        <h2>Ajouter une Tâche</h2>
+        <form id="addTaskForm" method="POST" action="/ajouterTache">
+            <input type="hidden" name="idprojet" value="<?= esc($projet['idprojet']) ?>">
+            <div>
+                <label for="addTitre">Titre :</label>
+                <input type="text" id="addTitre" name="titre" required>
+            </div>
+            <div>
+                <label for="addStatut">Statut :</label>
+                <select id="addStatut" name="statut" required>
+                    <option value="A Faire">A Faire</option>
+                    <option value="En cours">En cours</option>
+                    <option value="Terminée">Terminée</option>
+                </select>
+            </div>
+            <div>
+                <label for="addEcheance">Date limite :</label>
+                <input type="date" id="addEcheance" name="echeance" required>
+            </div>
+            <button type="submit">Ajouter</button>
+        </form>
+    </div>
+</div>
+
 <script>
 	function openEditModal(tache) {
 		// Remplir les champs du formulaire avec les données de la tâche
@@ -147,4 +174,19 @@
 			document.getElementById('editTaskModal').style.display = 'none';
 		}
 	};
+
+	function openAddModal() {
+        document.getElementById('addTaskModal').style.display = 'flex';
+    }
+
+    // Fermer le modal
+    document.getElementById('closeAddModal').onclick = function () {
+        document.getElementById('addTaskModal').style.display = 'none';
+    };
+
+    window.onclick = function (event) {
+        if (event.target === document.getElementById('addTaskModal')) {
+            document.getElementById('addTaskModal').style.display = 'none';
+        }
+    };
 </script>

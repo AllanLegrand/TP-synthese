@@ -67,19 +67,20 @@ class ProjetController extends BaseController
 	}
 
 	public function supprimerTache($idtache)
-{
-    $tacheModel = new TacheModel();
+	{
+		$tacheModel = new TacheModel();
 
-    // Supprimer la tâche en utilisant son ID
-    if ($tacheModel->delete($idtache)) {
-        return redirect()->back()->with('message', 'Tâche supprimée avec succès.');
-    } else {
-        return redirect()->back()->with('error', 'Erreur lors de la suppression de la tâche.');
-    }
-}
+		// Supprimer la tâche en utilisant son ID
+		if ($tacheModel->delete($idtache)) {
+			return redirect()->back()->with('message', 'Tâche supprimée avec succès.');
+		} else {
+			return redirect()->back()->with('error', 'Erreur lors de la suppression de la tâche.');
+		}
+	}
 
 
-	public function findProjectIndexById($array, $id) {
+	public function findProjectIndexById($array, $id)
+	{
 		foreach ($array as $index => $projet) {
 			if ($projet["idprojet"] == $id) {
 				return $index;
@@ -87,5 +88,26 @@ class ProjetController extends BaseController
 		}
 		return -1; // Si non trouvé
 	}
+
+	public function ajouterTache()
+	{
+		$tacheModel = new TacheModel();
+
+		// Données provenant du formulaire
+		$data = [
+			'titre' => $this->request->getPost('titre'),
+			'statut' => $this->request->getPost('statut'),
+			'echeance' => $this->request->getPost('echeance'),
+			'idprojet' => $this->request->getPost('idprojet'), // ID du projet associé
+		];
+
+		// Insérer la tâche dans la base de données
+		if ($tacheModel->insert($data)) {
+			return redirect()->back()->with('message', 'Tâche ajoutée avec succès.');
+		} else {
+			return redirect()->back()->with('error', 'Erreur lors de l\'ajout de la tâche.');
+		}
+	}
+
 
 }

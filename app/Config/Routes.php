@@ -37,3 +37,6 @@ $routes->post('/creer_projet', 'CreerProjetController::ajouter');
 
 $routes->get('/supprimerTache/(:num)', 'ProjetController::supprimerTache/$1');
 
+$routes->post('/ajouterTache', 'ProjetController::ajouterTache');
+
+
