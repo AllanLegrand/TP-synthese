@@ -8,7 +8,7 @@
 			<p><strong>Email :</strong> <?= esc($user['mail']) ?></p>
 
 			<!-- Bouton pour afficher la popup -->
-			<button onclick="openModal()">Modifier mes informations</button>
+			<button onclick="openModalInfos()">Modifier mes informations</button>
 			<!-- appele de la fonction deconnexion dans le controller -->
 			<a href="/profile/logout"><button type="button" class="deconnexion">Se déconnecter</button></a>
 			<!-- Bouton Supprimer mon compte -->
@@ -20,7 +20,7 @@
 	<!-- Popup (modal) -->
 	<div id="editModal" class="modal d-none">
 		<div class="modal-content">
-			<span class="close" onclick="closeModal()">&times;</span>
+			<span class="close" onclick="closeModalInfos()">&times;</span>
 			<h3>Modifier mes informations</h3>
 			<form action="/profile/update" method="post">
 				<div>
@@ -51,12 +51,12 @@
 
 	<script>
 		// Ouvrir la popup
-		function openModal() {
+		function openModalInfos() {
 			document.getElementById('editModal').classList.remove('d-none');
 		}
 
 		// Fermer la popup
-		function closeModal() {
+		function closeModalInfos() {
 			document.getElementById('editModal').classList.add('d-none');
 		}
 
