@@ -17,16 +17,35 @@
 				<h3>À Faire</h3>
 				<?php foreach ($taches as $tache): ?>
 					<?php if ($tache['statut'] === 'A Faire'): ?>
-						<div class="task-card">
-							<h4><?= esc($tache['titre']) ?></h4>
-							<p><strong>Date limite : </strong><?= esc($tache['echeance']) ?></p>
-							<div class="task-actions">
-								<img src="/assets/img/pencil.png" alt="Modifier" class="icon"
-									onclick="openEditModal(<?= htmlspecialchars(json_encode($tache), ENT_QUOTES, 'UTF-8') ?>)" />
-								<img src="/assets/img/remove.png" alt="Supprimer" class="icon"
-									onclick="if (confirm('Êtes-vous sûr de vouloir supprimer cette tâche ?')) location.href='/supprimerTache/<?= esc($tache['idtache']) ?>';" />
-							</div>
-						</div>
+						<div class="task-card <?php echo (new DateTime($tache['echeance']) < new DateTime()) ? 'overdue' : ''; ?>">
+                            <!-- Logo en retard -->
+                            <?php if (new DateTime($tache['echeance']) < new DateTime()): ?>
+                                <img src="/assets/img/clock.png" alt="En retard" class="overdue-icon" />
+                            <?php endif; ?>
+
+                            <h4><?= esc($tache['titre']) ?></h4>
+                            <p><strong>Date limite : </strong>
+                                <?php
+                                setlocale(LC_TIME, 'fr_FR.UTF-8', 'fr_FR', 'fr');  
+                                $echeanceDate = new DateTime($tache['echeance']);
+                                echo strftime('%d %B %Y', $echeanceDate->getTimestamp());
+                                ?>
+                            </p>
+                            <p>
+                                <strong>Priorité :</strong>
+                                <?php
+                                    echo $tache['priorite']
+                                ?>
+                            </p>
+                            <div class="task-actions">
+                                <img src="/assets/img/chat.png" alt="commentaire" class="icon"
+                                    onclick="openEditModal(<?= htmlspecialchars(json_encode($tache), ENT_QUOTES, 'UTF-8') ?>)" />
+                                <img src="/assets/img/pencil.png" alt="Modifier" class="icon"
+                                    onclick="openEditModal(<?= htmlspecialchars(json_encode($tache), ENT_QUOTES, 'UTF-8') ?>)" />
+                                <img src="/assets/img/remove.png" alt="Supprimer" class="icon"
+                                    onclick="if (confirm('Êtes-vous sûr de vouloir supprimer cette tâche ?')) location.href='/supprimerTache/<?= esc($tache['idtache']) ?>';" />
+                            </div>
+                        </div>
 					<?php endif; ?>
 				<?php endforeach; ?>
 				<button class="btn btn-primary" onclick="openAddModal()">Ajouter une tâche</button>
@@ -37,16 +56,35 @@
 				<h3>En Cours</h3>
 				<?php foreach ($taches as $tache): ?>
 					<?php if ($tache['statut'] === 'En cours'): ?>
-						<div class="task-card">
-							<h4><?= esc($tache['titre']) ?></h4>
-							<p><strong>Date limite : </strong><?= esc($tache['echeance']) ?></p>
-							<div class="task-actions">
-								<img src="/assets/img/pencil.png" alt="Modifier" class="icon"
-									onclick="openEditModal(<?= htmlspecialchars(json_encode($tache), ENT_QUOTES, 'UTF-8') ?>)" />
-								<img src="/assets/img/remove.png" alt="Supprimer" class="icon"
-									onclick="if (confirm('Êtes-vous sûr de vouloir supprimer cette tâche ?')) location.href='/supprimerTache/<?= esc($tache['idtache']) ?>';" />
-							</div>
-						</div>
+						<div class="task-card <?php echo (new DateTime($tache['echeance']) < new DateTime()) ? 'overdue' : ''; ?>">
+                            <!-- Logo en retard -->
+                            <?php if (new DateTime($tache['echeance']) < new DateTime()): ?>
+                                <img src="/assets/img/clock.png" alt="En retard" class="overdue-icon" />
+                            <?php endif; ?>
+
+                            <h4><?= esc($tache['titre']) ?></h4>
+                            <p><strong>Date limite : </strong>
+                                <?php
+                                setlocale(LC_TIME, 'fr_FR.UTF-8', 'fr_FR', 'fr');  
+                                $echeanceDate = new DateTime($tache['echeance']);
+                                echo strftime('%d %B %Y', $echeanceDate->getTimestamp());
+                                ?>
+                            </p>
+                            <p>
+                                <strong>Priorité :</strong>
+                                <?php
+                                    echo $tache['priorite']
+                                ?>
+                            </p>
+                            <div class="task-actions">
+                                <img src="/assets/img/chat.png" alt="commentaire" class="icon"
+                                    onclick="openEditModal(<?= htmlspecialchars(json_encode($tache), ENT_QUOTES, 'UTF-8') ?>)" />
+                                <img src="/assets/img/pencil.png" alt="Modifier" class="icon"
+                                    onclick="openEditModal(<?= htmlspecialchars(json_encode($tache), ENT_QUOTES, 'UTF-8') ?>)" />
+                                <img src="/assets/img/remove.png" alt="Supprimer" class="icon"
+                                    onclick="if (confirm('Êtes-vous sûr de vouloir supprimer cette tâche ?')) location.href='/supprimerTache/<?= esc($tache['idtache']) ?>';" />
+                            </div>
+                        </div>
 					<?php endif; ?>
 				<?php endforeach; ?>
 				<button class="btn btn-primary" onclick="openAddModal()">Ajouter une tâche</button>
@@ -59,14 +97,28 @@
 					<?php if ($tache['statut'] === 'Terminée'): ?>
 						<div class="task-card">
 							<h4><?= esc($tache['titre']) ?></h4>
-							<p><strong>Date limite : </strong><?= esc($tache['echeance']) ?></p>
+							<p><strong>Date limite : </strong>
+                                <?php
+                                setlocale(LC_TIME, 'fr_FR.UTF-8', 'fr_FR', 'fr');
+                                $echeanceDate = new DateTime($tache['echeance']);
+                                echo strftime('%d %B %Y', $echeanceDate->getTimestamp());
+                                ?>
+                            </p>
+                            <p>
+                                <strong>Priorité :</strong>
+                                <?php
+                                    echo $tache['priorite']
+                                ?>
+                            </p>
 							<div class="task-actions">
-								<img src="/assets/img/pencil.png" alt="Modifier" class="icon"
-									onclick="openEditModal(<?= htmlspecialchars(json_encode($tache), ENT_QUOTES, 'UTF-8') ?>)" />
-								<img src="/assets/img/remove.png" alt="Supprimer" class="icon"
-									onclick="if (confirm('Êtes-vous sûr de vouloir supprimer cette tâche ?')) location.href='/supprimerTache/<?= esc($tache['idtache']) ?>';" />
-							</div>
-						</div>
+                                <img src="/assets/img/chat.png" alt="commentaire" class="icon"
+                                    onclick="openEditModal(<?= htmlspecialchars(json_encode($tache), ENT_QUOTES, 'UTF-8') ?>)" />
+                                <img src="/assets/img/pencil.png" alt="Modifier" class="icon"
+                                    onclick="openEditModal(<?= htmlspecialchars(json_encode($tache), ENT_QUOTES, 'UTF-8') ?>)" />
+                                <img src="/assets/img/remove.png" alt="Supprimer" class="icon"
+                                    onclick="if (confirm('Êtes-vous sûr de vouloir supprimer cette tâche ?')) location.href='/supprimerTache/<?= esc($tache['idtache']) ?>';" />
+                            </div>
+                        </div>
 					<?php endif; ?>
 				<?php endforeach; ?>
 				<button class="btn btn-primary" onclick="openAddModal()">Ajouter une tâche</button>

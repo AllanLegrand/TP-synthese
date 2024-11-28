@@ -140,20 +140,31 @@ html {
 	margin: 5px 0;
 }
 
-/* Actions des tâches (icônes) */
+.task-card.overdue {
+    border: 2px solid rgb(255, 95, 95);
+    background-color: #ffdee1;
+    position: relative;
+}
+
+.task-card .overdue-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 15px;  /* Ajuste la taille de l'icône */
+    height: 15px; /* Ajuste la taille de l'icône */
+    z-index: 1;  /* Pour s'assurer que l'icône soit au-dessus du contenu */
+}
+
+
 .task-actions {
 	display: flex;
 	justify-content: flex-end;
-	/* Icônes alignées à droite */
 	gap: 10px;
-	/* Espacement entre les icônes */
 	margin-top: 8px;
-	/* Espace entre le contenu et les icônes */
 }
 
 .task-actions img.icon {
 	width: 15px;
-	/* Taille des icônes */
 	height: 15px;
 	cursor: pointer;
 	transition: transform 0.2s ease, opacity 0.3s ease;
@@ -161,21 +172,15 @@ html {
 
 .task-actions img.icon:hover {
 	transform: scale(1.2);
-	/* Agrandissement au survol */
 	opacity: 0.8;
-	/* Icône légèrement transparente au survol */
 }
 
-/* Bouton centré en bas */
 .task-column button {
 	margin-top: auto;
-	/* Place le bouton en bas */
 	align-self: center;
-	/* Centre horizontalement le bouton */
 	padding: 10px 20px;
 	font-size: 1rem;
 	background-color: #614DE4;
-	/* Violet personnalisé */
 	border: none;
 	color: white;
 	border-radius: 5px;
@@ -185,10 +190,8 @@ html {
 
 .task-column button:hover {
 	background-color: #49229c;
-	/* Violet plus foncé au survol */
 }
 
-/* Pour la pop-up */
 #editTaskModal {
 	position: fixed;
 	top: 0;
