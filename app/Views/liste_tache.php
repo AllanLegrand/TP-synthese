@@ -1,11 +1,21 @@
+<div id="errorMessage" style="display: none; color: red; margin-top: 10px;"></div>
+
 <section class="container mt-5">
+
 	<!-- Bandeau en haut du projet -->
 	<div class="project-header d-flex justify-content-between align-items-center bg-violet p-4 rounded mb-4">
 		<div>
-			<h1>Projet : <?= esc($projet['titreprojet']) ?></h1>
-			<p>Description : <?= esc($projet['descriptionprojet']) ?></p>
+			<h1 ondblclick="makeEditable(this, 'titreprojet', <?= esc($projet['idprojet']) ?>)">
+				<?= esc($projet['titreprojet']) ?>
+			</h1>
+			<p ondblclick="makeEditable(this, 'descriptionprojet', <?= esc($projet['idprojet']) ?>)">
+				<?= esc($projet['descriptionprojet']) ?>
+			</p>
 		</div>
-		<button class="btn btn-share" onclick="openSharePopup()">Partager</button>
+		<div class="button-column">
+			<button class="btn btn-share" onclick="openSharePopup()">Partager</button>
+			<button class="btn btn-share" onclick="location.href='/quitterProjet/<?= esc($projet['idprojet']) ?>'">Quitter</button>
+		</div>
 	</div>
 
 	<h2>Liste des Tâches</h2>
@@ -98,7 +108,6 @@
 	<?php endif; ?>
 </section>
 
-<!-- Modal -->
 <!-- Modal -->
 <div id="editTaskModal" style="display: none;">
 	<div class="modal-content">
