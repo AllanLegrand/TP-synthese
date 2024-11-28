@@ -29,7 +29,7 @@ class CreerProjetController extends BaseController
             $groupeModel->ajouterUtilisateurAuProjet($idUtil, $idProjet); // Ajoute l'utilisateur au projet
 
             // Rediriger vers la page des projets
-            return redirect()->to('/projets');
+            return redirect()->to('/projets/' . $idProjet);
         } else {
             // Gestion d'erreur si le projet n'a pas été créé
             return redirect()->back()->with('error', 'Erreur lors de la création du projet.');
