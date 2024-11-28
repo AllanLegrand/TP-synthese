@@ -41,11 +41,15 @@ class ProjetController extends BaseController
 
 		$taches = $tacheModel->getTachesByProject($projet);
 
+		$utilisateurs = $projetModel->getUsersByProject($projet);
+
+
 		// Charger une vue pour afficher les projets de l'utilisateur
 		echo view('header', ['title' => 'Taches']);
 		echo view('liste_tache', [
 			'projet' => $projets[$index],
-			'taches' => $taches
+			'taches' => $taches,
+			'utilisateurs' => $utilisateurs
 		]);
 		echo view('footer');
 	}
@@ -116,6 +120,20 @@ class ProjetController extends BaseController
 		}
 	}
 
+	public function partagerProjet()
+	{
+		$idProjet = $this->request->getPost('idprojet');
+		$mailUser = $this->request->getPost('mailUser');
 
+		$userModel = new \App\Models\UtilisateurModele();
+		$projetModel = new \App\Models\ProjetModel();
 
+		$utilisateur = $userModel->where('mail', $mailUser)->first();
+		if (!$utilisateur) {
+			return redirect()->back()->with('error', 'Utilisateur introuvable.');
+		}
+
+		$projetModel->addUserToProject($idProjet, $utilisateur['idutil']);
+		return redirect()->back()->with('message', 'Utilisateur ajouté avec succès.');
+	}
 }
