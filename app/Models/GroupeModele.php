@@ -16,7 +16,7 @@ class GroupeModele extends Model
         ]);
     }
 
-/**
+    /**
      * Ajoute un nouveau groupe.
      *
      * @param array $data Données du groupe à ajouter (doit inclure idutil et idprojet)
@@ -53,7 +53,11 @@ class GroupeModele extends Model
      */
     public function supprGroupe(int $idUtil, int $idProjet): bool
     {
-        // Suppression avec les deux clés primaires
-        return $this->delete(['idutil' => $idUtil, 'idprojet' => $idProjet]);
+        $builder = $this->db->table('groupe');
+        $builder->where('idutil', $idUtil)
+                ->where('idprojet', $idProjet);
+        $builder->delete();
+
+        return true;
     }
 }

@@ -1,6 +1,7 @@
 <?php
 namespace App\Controllers;
 
+use App\Models\GroupeModele;
 use App\Models\ProjetModel;
 use App\Models\TacheModel;
 
@@ -17,7 +18,7 @@ class ProjetController extends BaseController
 		echo view('header', ['title' => 'Projets']);
 		echo view('listeProjet', [
 			'projets' => $projets,
-			'idutil' => $idUtil
+			'idutil' => $idUtil,
 		]);
 		echo view('footer');
 	}
@@ -135,5 +136,58 @@ class ProjetController extends BaseController
 
 		$projetModel->addUserToProject($idProjet, $utilisateur['idutil']);
 		return redirect()->back()->with('message', 'Utilisateur ajouté avec succès.');
+	}
+
+	public function quitterProjet($idProjet)
+	{
+		// Récupérer l'ID de l'utilisateur depuis la session
+		$idUtilisateur = session()->get('idutil');
+		// Charger le modèle
+		$GroupeModele = new GroupeModele();
+
+		// Supprimer la relation de groupe
+		$GroupeModele->supprGroupe($idUtilisateur, $idProjet);
+
+		// Ajouter un message flash pour indiquer la réussite de l'action
+		session()->setFlashdata('success', 'Vous avez quitté le projet avec succès.');
+		// Rediriger avec un message de succès
+		return redirect()->to('/projets');
+	}
+
+	public function updateProject()
+	{
+		// Récupérer les données envoyées en JSON
+		$data = $this->request->getJSON(true);
+		
+		// Journalisation des données reçues
+		log_message('debug', 'Données reçues pour la mise à jour : ' . json_encode($data));
+		
+		// Extraire les informations nécessaires
+		$field = $data['field'] ?? null;
+		$value = $data['value'] ?? null;
+		$idProjet = $data['idprojet'] ?? null;
+		
+		// Validation des données
+		if (!$field || !$value || !$idProjet) {
+			log_message('error', 'Données manquantes : ' . json_encode($data));
+			return $this->response->setJSON(['success' => false]);
+		}
+		
+		// Charger le modèle
+		$ProjetModele = new \App\Models\ProjetModel();
+		
+		// Préparer les données de mise à jour
+		$updateData = [$field => $value];
+		
+		// Tenter de mettre à jour le projet
+		$updated = $ProjetModele->update($idProjet, $updateData);
+		
+		if ($updated) {
+			log_message('debug', "Projet ID $idProjet mis à jour avec succès.");
+		} else {
+			log_message('error', "Échec de la mise à jour pour le projet ID $idProjet.");
+		}
+		
+		return $this->response->setJSON(['success' => $updated]);
 	}
 }
