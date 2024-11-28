@@ -60,4 +60,25 @@ class ProfileController extends BaseController
         $session->setFlashdata('success', 'Vos informations ont été mises à jour avec succès.');
         return redirect()->to('/profile');
     }
+
+	public function supprInfo()
+    {
+        $session = session();
+        $userId = $session->get('idutil');
+
+        // Récupérer les données soumises
+        $prenom = $this->request->getPost('prenom');
+        $nom = $this->request->getPost('nom');
+
+        // Mettre à jour les informations de l'utilisateur
+        $UtilisateurModele = new UtilisateurModele();
+        $UtilisateurModele->supprUtilisateur($userId);
+
+		$session->destroy(); // Détruire toutes les données de session
+		helper('cookie');
+        delete_cookie('ci_session'); // Supprimer le cookie de session
+
+        // Rediriger vers la page de suppression avec un message de succès
+        return view('suppresion');
+    }
 }
