@@ -66,6 +66,19 @@ class ProjetController extends BaseController
 		return redirect()->back()->with('message', 'Tâche modifiée avec succès.');
 	}
 
+	public function supprimerTache($idtache)
+{
+    $tacheModel = new TacheModel();
+
+    // Supprimer la tâche en utilisant son ID
+    if ($tacheModel->delete($idtache)) {
+        return redirect()->back()->with('message', 'Tâche supprimée avec succès.');
+    } else {
+        return redirect()->back()->with('error', 'Erreur lors de la suppression de la tâche.');
+    }
+}
+
+
 	public function findProjectIndexById($array, $id) {
 		foreach ($array as $index => $projet) {
 			if ($projet["idprojet"] == $id) {

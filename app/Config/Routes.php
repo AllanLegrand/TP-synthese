@@ -34,3 +34,6 @@ $routes->get('/projets/(:any)', 'ProjetController::tache/$1', ['filter' => 'auth
 $routes->post('/modifierTache', 'ProjetController::modifierTache');
 
 $routes->post('/creer_projet', 'CreerProjetController::ajouter');
+
+$routes->get('/supprimerTache/(:num)', 'ProjetController::supprimerTache/$1');
+
