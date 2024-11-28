@@ -56,17 +56,37 @@ class ProjetController extends BaseController
 
 		$data = [
 			'titre' => $this->request->getPost('titre'),
+			'description' => $this->request->getPost('description'),
+			'echeance' => $this->request->getPost('echeance'),
+			'priorite' => $this->request->getPost('priorite'),
 			'statut' => $this->request->getPost('statut'),
-			'echeance' => $this->request->getPost('echeance')
 		];
 		$idtache = $this->request->getPost('idtache');
 
-		$tacheModel->update($idtache, $data);
-
-		return redirect()->back()->with('message', 'Tâche modifiée avec succès.');
+		// Mise à jour de la tâche dans la base de données
+		if ($tacheModel->update($idtache, $data)) {
+			return redirect()->back()->with('message', 'Tâche modifiée avec succès.');
+		} else {
+			return redirect()->back()->with('error', 'Erreur lors de la modification de la tâche.');
+		}
 	}
 
-	public function findProjectIndexById($array, $id) {
+
+	public function supprimerTache($idtache)
+	{
+		$tacheModel = new TacheModel();
+
+		// Supprimer la tâche en utilisant son ID
+		if ($tacheModel->delete($idtache)) {
+			return redirect()->back()->with('message', 'Tâche supprimée avec succès.');
+		} else {
+			return redirect()->back()->with('error', 'Erreur lors de la suppression de la tâche.');
+		}
+	}
+
+
+	public function findProjectIndexById($array, $id)
+	{
 		foreach ($array as $index => $projet) {
 			if ($projet["idprojet"] == $id) {
 				return $index;
@@ -74,5 +94,28 @@ class ProjetController extends BaseController
 		}
 		return -1; // Si non trouvé
 	}
+
+	public function ajouterTache()
+	{
+		$tacheModel = new TacheModel();
+
+		$data = [
+			'titre' => $this->request->getPost('titre'),
+			'description' => $this->request->getPost('description'),
+			'echeance' => $this->request->getPost('echeance'),
+			'priorite' => $this->request->getPost('priorite'),
+			'statut' => $this->request->getPost('statut'),
+			'datecreation' => $this->request->getPost('datecreation')
+		];
+
+		// Insertion dans la base de données
+		if ($tacheModel->insert($data)) {
+			return redirect()->back()->with('message', 'Tâche ajoutée avec succès.');
+		} else {
+			return redirect()->back()->with('error', 'Erreur lors de l\'ajout de la tâche.');
+		}
+	}
+
+
 
 }

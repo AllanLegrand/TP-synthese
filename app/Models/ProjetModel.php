@@ -5,24 +5,24 @@ use CodeIgniter\Model;
 
 class ProjetModel extends Model
 {
-    protected $table = 'projet';
-    protected $primaryKey = 'idprojet';
-    protected $allowedFields = ['titreprojet', 'descriptionprojet'];
+	protected $table = 'projet';
+	protected $primaryKey = 'idprojet';
+	protected $allowedFields = ['titreprojet', 'descriptionprojet'];
 
-    /**
-     * Récupère les projets d'un utilisateur donné.
-     *
-     * @param int $idUtil ID de l'utilisateur
-     * @return array Liste des projets associés à cet utilisateur
-     */
-    public function getProjectsByUser(int $idUtil): array
-    {
-        return $this->db->table('projet')->select('projet.*, COUNT(tache.idtache) AS totalTaches, SUM(CASE WHEN tache.statut = \'Terminée\' THEN 1 ELSE 0 END) AS totalTachesTerminees')
-        ->join('groupe', 'groupe.idprojet = projet.idprojet')
-        ->join('tache', 'tache.idprojet = projet.idprojet', 'left')
-        ->where('groupe.idutil', $idUtil)
-		->groupBy('projet.idprojet')->get()->getResultArray();
-    }
+	/**
+	 * Récupère les projets d'un utilisateur donné.
+	 *
+	 * @param int $idUtil ID de l'utilisateur
+	 * @return array Liste des projets associés à cet utilisateur
+	 */
+	public function getProjectsByUser(int $idUtil): array
+	{
+		return $this->db->table('projet')->select('projet.*, COUNT(tache.idtache) AS totalTaches, SUM(CASE WHEN tache.statut = \'Terminée\' THEN 1 ELSE 0 END) AS totalTachesTerminees')
+			->join('groupe', 'groupe.idprojet = projet.idprojet')
+			->join('tache', 'tache.idprojet = projet.idprojet', 'left')
+			->where('groupe.idutil', $idUtil)
+			->groupBy('projet.idprojet')->get()->getResultArray();
+	}
 
 	/**
      * Récupère les projets d'un utilisateur donné a partir d'un titre donné.

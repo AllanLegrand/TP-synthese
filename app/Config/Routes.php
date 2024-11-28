@@ -14,7 +14,10 @@ $routes->get('/signin', 'SigninController::index'); // Formulaire de connexion
 $routes->match(['get', 'post'], '/SigninController/loginAuth', 'SigninController::loginAuth'); // Traitement de l'authentification
 
 $routes->get('/profile', 'ProfileController::index', ['filter' => 'authGuard']); // Page de profil protégée par un filtre
+$routes->match(['get', 'post'],'/profile/update', 'ProfileController::updateInfo', ['filter' => 'authGuard']); // Page de profil protégée par un filtre
+$routes->match(['get', 'post'],'/profile/suppr', 'ProfileController::supprInfo', ['filter' => 'authGuard']); // Page de profil protégée par un filtre
 $routes->get('/profile/logout', 'ProfileController::logout');
+$routes->get('/suppression', 'ProfileController::pageSuppression');
 
 $routes->get('/forgot-password', 'ForgotPasswordController::index'); // Formulaire pour demander un lien de réinitialisation
 $routes->post('/forgot-password/sendResetLink', 'ForgotPasswordController::sendResetLink'); // Envoi du lien par e-mail
@@ -31,6 +34,12 @@ $routes->get('/projets/(:any)', 'ProjetController::tache/$1', ['filter' => 'auth
 $routes->post('/modifierTache', 'ProjetController::modifierTache');
 
 $routes->post('/creer_projet', 'CreerProjetController::ajouter');
+
+$routes->get('/supprimerTache/(:num)', 'ProjetController::supprimerTache/$1');
+
+$routes->post('/ajouterTache', 'ProjetController::ajouterTache');
+
+
 
 $routes->get('/recherche', 'ProjetController::rechercheProjets');
 

@@ -11,6 +11,9 @@
 			<button onclick="openModal()">Modifier mes informations</button>
 			<!-- appele de la fonction deconnexion dans le controller -->
 			<a href="/profile/logout"><button type="button" class="deconnexion">Se déconnecter</button></a>
+			<!-- Bouton Supprimer mon compte -->
+			 <br>
+			<button id="deleteAccountBtn" class="btn btn-danger">Supprimer mon compte</button>
 		</div>
 	</main>
 
@@ -33,6 +36,19 @@
 		</div>
 	</div>
 
+
+
+	<!-- Boîte de dialogue de confirmation -->
+	<div id="confirmDialog" class="dialog-overlay" style="display: none;">
+		<div class="dialog-box">
+			<h3>Confirmer la suppression</h3>
+			<p>Êtes-vous sûr de vouloir supprimer votre compte ? <br>
+				Cette action est irréversible et entraînera la perte de toutes vos données associées.</p>
+			<button id="confirmDelete" class="btn btn-danger">Confirmer</button>
+			<button id="cancelDelete" class="btn btn-secondary">Annuler</button>
+		</div>
+	</div>
+
 	<script>
 		// Ouvrir la popup
 		function openModal() {
@@ -43,5 +59,29 @@
 		function closeModal() {
 			document.getElementById('editModal').classList.add('d-none');
 		}
+
+		document.addEventListener("DOMContentLoaded", function () {
+			const deleteAccountBtn = document.getElementById("deleteAccountBtn");
+			const confirmDialog = document.getElementById("confirmDialog");
+			const confirmDelete = document.getElementById("confirmDelete");
+			const cancelDelete = document.getElementById("cancelDelete");
+
+			// Afficher la boîte de dialogue
+			deleteAccountBtn.addEventListener("click", () => {
+				confirmDialog.style.display = "flex";
+			});
+
+			// Cacher la boîte de dialogue
+			cancelDelete.addEventListener("click", () => {
+				confirmDialog.style.display = "none";
+			});
+
+			// Confirmer la suppression (appel à la fonction du contrôleur)
+			confirmDelete.addEventListener("click", () => {
+				// Redirige vers une fonction du contrôleur
+				window.location.href = "/profile/suppr";
+			});
+		});
+
 	</script>
 </body>
