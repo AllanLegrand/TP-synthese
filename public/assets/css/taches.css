@@ -26,7 +26,6 @@ html {
 .project-header h1 {
 	margin: 0;
 	font-size: 1.5rem;
-	/* Taille de texte réduite pour minimalisme */
 }
 
 .project-header p {
@@ -36,7 +35,6 @@ html {
 
 .project-header .btn-share {
 	background-color: #614DE4;
-	/* Violet pour le bouton */
 	border: none;
 	color: white;
 	padding: 6px 14px;
@@ -48,10 +46,8 @@ html {
 
 .project-header .btn-share:hover {
 	background-color: #49229c;
-	/* Violet plus foncé au survol */
 }
 
-/* Conteneurs des colonnes */
 .task-columns {
 	display: flex;
 	justify-content: space-between;
@@ -59,63 +55,48 @@ html {
 	margin-top: 20px;
 }
 
-/* Responsive pour écrans petits : colonnes empilées */
 @media (max-width: 768px) {
 	.task-columns {
 		flex-direction: column;
-		/* Empiler les colonnes verticalement */
 	}
 }
 
-/* Colonne des tâches */
 .task-column {
 	display: flex;
 	flex-direction: column;
-	/* Alignement vertical des éléments */
 	justify-content: flex-start;
-	/* Par défaut, éléments alignés en haut */
 	flex: 1;
 	padding: 20px;
 	border-radius: 8px;
 	background-color: #f4f4f4;
-	/* Fond blanc pour plus de contraste */
 	box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
-	/* Ombre légère */
 	transition: 0.3s ease;
 }
 
-/* Bordures spécifiques pour chaque colonne */
 .task-column.a-faire {
 	border-left: 5px solid #ffc56d;
-	/* Bordure orange pour "À Faire" */
 }
 
 .task-column.a-faire h3 {
 	color: #ff9800;
-	/* Titre orange */
 }
 
 .task-column.en-cours {
 	border-left: 5px solid #8fcdff;
-	/* Bordure bleue pour "En Cours" */
 }
 
 .task-column.en-cours h3 {
 	color: #2196f3;
-	/* Titre bleu */
 }
 
 .task-column.terminee {
 	border-left: 5px solid #8cca8d;
-	/* Bordure verte pour "Terminées" */
 }
 
 .task-column.terminee h3 {
 	color: #4caf50;
-	/* Titre vert */
 }
 
-/* Cartes de tâches */
 .task-card {
 	background-color: #fff;
 	border: 1px solid #ddd;
@@ -399,11 +380,3 @@ form button {
 form button:hover {
     background-color: #0056b3;
 }
-
-/* Spacing between elements */
-.task-column {
-    margin-bottom: 20px;
-}
-
-.task-card {
-    background-color:

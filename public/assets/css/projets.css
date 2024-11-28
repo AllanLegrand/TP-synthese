@@ -12,6 +12,11 @@ body, html {
     padding: 20px;
     background-color: #f8f9fa;
     transition: 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+    height: 100%;
 }
 
 .project-card:hover {
@@ -22,6 +27,19 @@ body, html {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 20px;
+}
+
+.project-card button {
+    margin-top: auto;
+    align-self: center;
+    font-size: 1rem;
+    background-color: #614DE4;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    padding: 10px 20px;
 }
 
 .project-card p {
