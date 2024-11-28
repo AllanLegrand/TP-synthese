@@ -39,7 +39,7 @@ $routes->get('/supprimerTache/(:num)', 'ProjetController::supprimerTache/$1');
 
 $routes->post('/ajouterTache', 'ProjetController::ajouterTache');
 
-
+$routes->post('projet/partager', 'ProjetController::partagerProjet');
 
 $routes->get('/recherche', 'ProjetController::rechercheProjets');
 
