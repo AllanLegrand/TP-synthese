@@ -16,6 +16,8 @@ function openEditModal(tache) {
     document.getElementById('modalEcheance').value = tache.echeance;
     document.getElementById('modalPriorite').value = tache.priorite;
     document.getElementById('modalStatut').value = tache.statut;
+    document.getElementById('modalIdProjet').value = tache.idprojet;
+    document.getElementById('modalDateCreation').innerHTML = tache.datecreation;
 
     // Afficher le modal
     document.getElementById('editTaskModal').style.display = 'flex';

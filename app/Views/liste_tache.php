@@ -130,6 +130,11 @@
 					<option value="Forte">Forte</option>
 				</select>
 			</div>
+			
+			<div style="display:none;">
+				<label for="modalIdProjet">ID Projet :</label>
+				<input type="text" id="modalIdProjet" name="idprojet" value="<?= esc($projet['idprojet']) ?>" readonly>
+			</div>
 
 			<div>
 				<label for="modalStatut">Statut :</label>
@@ -140,6 +145,11 @@
 				</select>
 			</div>
 
+			<div>
+				<label for="modalDateCreation">Date de création :</label>
+				<p  id="modalDateCreation" name="datecreation"></p>
+			</div>
+			
 			<button type="submit">Enregistrer</button>
 		</form>
 	</div>
@@ -182,6 +192,11 @@
 					<option value="En cours">En cours</option>
 					<option value="Terminée">Terminée</option>
 				</select>
+			</div>
+
+			<div style="display:none;">
+				<label for="addIdProjet">ID Projet :</label>
+				<input type="text" id="addIdProjet" name="idprojet" value="<?= esc($projet['idprojet']) ?>" readonly>
 			</div>
 
 			<button type="submit">Créer</button>

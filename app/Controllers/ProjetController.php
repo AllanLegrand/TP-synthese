@@ -109,7 +109,8 @@ class ProjetController extends BaseController
 			'echeance' => $this->request->getPost('echeance'),
 			'priorite' => $this->request->getPost('priorite'),
 			'statut' => $this->request->getPost('statut'),
-			'datecreation' => $this->request->getPost('datecreation')
+			'datecreation' => date('Y-m-d H:i:s', time()),
+			'idprojet' => $this->request->getPost('idprojet')
 		];
 
 		// Insertion dans la base de données
