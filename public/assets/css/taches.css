@@ -435,3 +435,52 @@ form button:hover {
     background-color: #007bff;
     color: white;
 }
+
+/* Applique flexbox pour aligner les éléments du formulaire de tri */
+.tri-form {
+    display: flex;
+    align-items: center;
+    gap: 15px;  /* Espace entre les éléments */
+    flex-wrap: nowrap; /* Empêche les éléments de passer à la ligne */
+    margin: 10px 0; /* Espace vertical autour du formulaire */
+}
+
+/* Aligner les selects correctement */
+.tri-form select {
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    margin: 0; /* Supprime les marges par défaut */
+    flex: 1; /* Permet aux selects de prendre une largeur égale */
+    min-width: 150px; /* Définit une largeur minimale pour les selects */
+}
+
+/* Liste de tri : Augmenter la largeur */
+.tri-form #tri {
+    flex: 2; /* Augmente la largeur du select de tri */
+    min-width: 200px; /* Définir une largeur minimale plus grande */
+}
+
+/* Liste de filtre : Réduire la largeur */
+.tri-form #filtre-priorite {
+    flex: 1; /* Réduit la largeur du select de filtre */
+    min-width: 120px; /* Largeur minimale plus petite */
+}
+
+/* Optionnel : Si tu veux cacher les labels */
+.tri-form label {
+    display: none;
+}
+
+/* Option responsive : Si l'écran est trop petit, on passe à une disposition en colonne */
+@media (max-width: 768px) {
+    .tri-form {
+        flex-direction: column; /* Empile les éléments sur les petits écrans */
+        gap: 10px;  /* Espace réduit entre les éléments en colonne */
+    }
+
+    .tri-form select {
+        width: 100%; /* Permet au select de s'étendre sur toute la largeur */
+    }
+}

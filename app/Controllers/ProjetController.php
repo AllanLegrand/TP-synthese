@@ -26,10 +26,15 @@ class ProjetController extends BaseController
 
 	public function tache($projet)
 	{
+		$tri = $this->request->getGet('triColonne') ?? 'datecreation_ASC';
+		$filtrePriorite = $this->request->getGet('filtrePriorite') ?? 'Toutes';
+
+		list($triColonne, $ordre) = explode('_', $tri);
+    	$ordre = strtoupper($ordre) == 'DESC' ? 'DESC' : 'ASC';
+
 		$idUtil = session()->get('idutil');
 		$projetModel = new ProjetModel();
 
-		// Récupérer les projets pour un utilisateur donné
 		$projets = $projetModel->getProjectsByUser($idUtil);
 
 		$index = $this->findProjectIndexById($projets, strval($projet));
@@ -41,22 +46,30 @@ class ProjetController extends BaseController
 
 		$tacheModel = new TacheModel();
 
-		$taches = $tacheModel->getTachesByProject($projet);
+		$taches = $tacheModel->getTaches($projet, $triColonne, $ordre, $filtrePriorite);
+
+		$tachesAFaire = $tacheModel->getTachesByStatut($projet, 'A Faire', $triColonne, $ordre, 0, 10);
+    	$tachesEnCours = $tacheModel->getTachesByStatut($projet, 'En cours', $triColonne, $ordre, 0, 10);
+    	$tachesTerminees = $tacheModel->getTachesByStatut($projet, 'Terminée', $triColonne, $ordre, 0, 10);
 
 		$utilisateurs = $projetModel->getUsersByProject($projet);
-
 		$commentaireModel = new CommentaireModele();
-
 		$commentaires = $commentaireModel->getCommentaireByProject($projet);
 
 
-		// Charger une vue pour afficher les projets de l'utilisateur
+		// Charger la vue avec les tâches triées
 		echo view('header', ['title' => 'Taches']);
 		echo view('liste_tache', [
 			'projet' => $projets[$index],
 			'taches' => $taches,
-			'utilisateurs' => $utilisateurs,
-			'commentaires' => $commentaires
+			'triColonne' => $triColonne,
+			'tachesAFaire' => $tachesAFaire,
+        	'tachesEnCours' => $tachesEnCours,
+        	'tachesTerminees' => $tachesTerminees,
+			'ordre' => $ordre,
+			'filtrePriorite' => $filtrePriorite,
+			'commentaires' => $commentaires,
+			'utilisateurs' => $utilisateurs
 		]);
 		echo view('footer');
 	}
