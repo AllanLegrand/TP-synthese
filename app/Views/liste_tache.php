@@ -272,7 +272,7 @@
 
 		<form id="commentTaskForm" method="POST" action="/ajouterCommentaire">
 			<div>
-				<input type="text" id="addContenu" class="addContenu" name="contenu" required>
+				<input type="text" placeholder="Commenter vos idées ;)" id="addContenu" class="addContenu" name="contenu" required>
 				<button type="submit">Commenter</button>
 				<input type="hidden" id="idtacheCommentaire" name="idtache" readonly>
 			</div>

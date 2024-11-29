@@ -138,7 +138,8 @@ function showErrorMessage(message) {
 function openCommentModal(commentaires, idtache) {
     // Filtrer les commentaires selon idtache
     const filteredComments = commentaires.filter(comment => comment.idtache === idtache.toString());
-    const commentsPerPage = 5; // Nombre de commentaires par page
+    const commentsPerPage = 3; // Nombre de commentaires par page
+    const maxVisiblePages = 4; // Nombre maximum de numéros de pages visibles
     let currentPage = 1;
 
     // Fonction pour afficher une page spécifique de commentaires
@@ -174,14 +175,14 @@ function openCommentModal(commentaires, idtache) {
         renderPagination();
     }
 
-    // Fonction pour afficher les contrôles de pagination avec Bootstrap
+    // Fonction pour afficher les contrôles de pagination avec limite de numéros visibles
     function renderPagination() {
         const totalPages = Math.ceil(filteredComments.length / commentsPerPage);
         const paginationContainer = document.createElement('nav');
         paginationContainer.setAttribute('aria-label', 'Page navigation example');
 
         const paginationList = document.createElement('ul');
-        paginationList.className = 'pagination justify-content-end';
+        paginationList.className = 'pagination justify-content-center custom-pagination';
 
         // Bouton "Précédent"
         const prevItem = document.createElement('li');
@@ -191,8 +192,14 @@ function openCommentModal(commentaires, idtache) {
 </svg></a>`;
         paginationList.appendChild(prevItem);
 
-        // Numéros de page
-        for (let i = 1; i <= totalPages; i++) {
+        // Déterminer les numéros de pages à afficher
+        const startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+        const endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+
+        // Si le début des pages est décalé à cause de la limite supérieure
+        const adjustedStartPage = Math.max(1, endPage - maxVisiblePages + 1);
+
+        for (let i = adjustedStartPage; i <= endPage; i++) {
             const pageItem = document.createElement('li');
             pageItem.className = `page-item ${i === currentPage ? 'active' : ''}`;
             pageItem.innerHTML = `<a class="page-link" href="#" onclick="changePage(${i})">${i}</a>`;
@@ -215,7 +222,8 @@ function openCommentModal(commentaires, idtache) {
 
     // Fonction pour changer de page
     window.changePage = function (page) {
-        if (page >= 1 && page <= Math.ceil(filteredComments.length / commentsPerPage)) {
+        const totalPages = Math.ceil(filteredComments.length / commentsPerPage);
+        if (page >= 1 && page <= totalPages) {
             currentPage = page;
             renderComments(page);
         }
