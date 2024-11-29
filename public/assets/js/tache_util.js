@@ -17,7 +17,14 @@ function openEditModal(tache) {
     document.getElementById('modalPriorite').value = tache.priorite;
     document.getElementById('modalStatut').value = tache.statut;
     document.getElementById('modalIdProjet').value = tache.idprojet;
-    document.getElementById('modalDateCreation').innerHTML = tache.datecreation;
+
+    document.getElementById('modalDateCreation').innerHTML = new Intl.DateTimeFormat('fr-FR', {
+        day: '2-digit',
+        month: 'long',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+    }).format(new Date(tache.datecreation)).replace('.', '').toLowerCase();
 
     // Afficher le modal
     document.getElementById('editTaskModal').style.display = 'flex';
@@ -126,4 +133,72 @@ function showErrorMessage(message) {
     setTimeout(() => {
         errorElement.style.display = 'none';
     }, 3000); // Hide the error message after 3 seconds
+}
+
+function openCommentModal(commentaires, idtache) {
+    // Filtrer les commentaires selon idtache
+    const filteredComments = commentaires.filter(comment => comment.idtache === idtache.toString());
+
+    // Vérifier s'il y a des commentaires pour cette tâche
+    if (filteredComments.length > 0) {
+        // Utiliser le premier commentaire (ou un autre logique)
+        const firstComment = filteredComments[0];
+
+        // Convertir la date du premier commentaire
+        const dateString = firstComment.datecom;
+        const date = new Date(dateString);
+
+        // Formatteur pour afficher la date au format souhaité
+        const formatter = new Intl.DateTimeFormat('fr-FR', {
+            day: '2-digit',
+            month: 'short',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+        });
+
+        // Formater et afficher la date
+        const formattedDate = formatter.format(date).replace('.', '').toLowerCase();
+
+        // Afficher l'id de la tâche dans le modal
+        document.getElementById('idtacheCommentaire').value = firstComment.idtache;
+    } else {
+        // Si aucun commentaire n'est trouvé, afficher un message approprié
+        document.getElementById('idtacheCommentaire').innerHTML = 'Aucune tâche associée.';
+    }
+
+    // Générer le contenu HTML pour les commentaires
+    const commentContent = filteredComments.length
+        ? filteredComments.map(comment => {
+            const commentDate = new Date(comment.datecom);
+            const formattedDate = new Intl.DateTimeFormat('fr-FR', {
+                day: '2-digit',
+                month: 'short',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+            }).format(commentDate).replace('.', '').toLowerCase();
+
+            return `
+                <div id="commentaire-simple" class="commentaire-simple">
+                    <p><strong>${comment.prenom} ${comment.nom}</strong> <small> ${formattedDate}</small></p>
+                    <p>${comment.contenu}</p>
+                </div>
+            `;
+        }).join('')
+        : '<p>Aucun commentaire pour cette tâche.</p>';
+
+    // Insérer le contenu dans le modal
+    document.getElementById('commentContent').innerHTML = commentContent;
+
+    // Afficher le modal et l'overlay
+    document.getElementById('commentModal').style.display = 'block';
+    document.getElementById('modalOverlay').style.display = 'block';
+}
+
+
+function closeCommentModal() {
+    // Cacher le modal et l'overlay
+    document.getElementById('commentModal').style.display = 'none';
+    document.getElementById('modalOverlay').style.display = 'none';
 }

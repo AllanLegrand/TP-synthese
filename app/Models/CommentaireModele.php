@@ -3,13 +3,13 @@ namespace App\Models;
 use CodeIgniter\Model;
 class CommentaireModele extends Model
 {
-	protected $table = 'Commentaire';
-	protected $primaryKey = 'idCom';
+	protected $table = 'commentaire';
+	protected $primaryKey = 'idcom';
 	protected $allowedFields = [
 		'contenu',
-		'dateCom',
-		'idUtil',
-		'idTache'
+		'datecom',
+		'idutil',
+		'idtache'
 	];
 
 	/**
@@ -45,5 +45,13 @@ class CommentaireModele extends Model
 	public function supprCommentaire(int $idCom): bool
 	{
 		return $this->delete($idCom);
+	}
+
+	public function getCommentaireByProject(int $idProjet): array
+	{
+		return $this->select('commentaire.*, utilisateur.prenom, utilisateur.nom')->join('tache', 'commentaire.idtache = tache.idtache')
+			->join('utilisateur', 'utilisateur.idutil = commentaire.idutil')
+			->where('idprojet', $idProjet)
+			->findAll();
 	}
 }

@@ -1,6 +1,7 @@
 <?php
 namespace App\Controllers;
 
+use App\Models\CommentaireModele;
 use App\Models\GroupeModele;
 use App\Models\ProjetModel;
 use App\Models\TacheModel;
@@ -44,13 +45,18 @@ class ProjetController extends BaseController
 
 		$utilisateurs = $projetModel->getUsersByProject($projet);
 
+		$commentaireModel = new CommentaireModele();
+
+		$commentaires = $commentaireModel->getCommentaireByProject($projet);
+
 
 		// Charger une vue pour afficher les projets de l'utilisateur
 		echo view('header', ['title' => 'Taches']);
 		echo view('liste_tache', [
 			'projet' => $projets[$index],
 			'taches' => $taches,
-			'utilisateurs' => $utilisateurs
+			'utilisateurs' => $utilisateurs,
+			'commentaires' => $commentaires
 		]);
 		echo view('footer');
 	}
@@ -73,6 +79,26 @@ class ProjetController extends BaseController
 			return redirect()->back()->with('message', 'Tâche modifiée avec succès.');
 		} else {
 			return redirect()->back()->with('error', 'Erreur lors de la modification de la tâche.');
+		}
+	}
+
+	public function ajouterCommentaire()
+	{
+		$idUtil = session()->get('idutil');
+
+		$data = [
+			'contenu' => $this->request->getPost('contenu'),
+			'datecom' => date('Y-m-d H:i:s', time()),
+			'idutil' => $idUtil,
+			'idtache' => $this->request->getPost('idtache'),
+		];
+
+		$commentaireModel = new CommentaireModele();
+
+		if ($commentaireModel->insert($data)) {
+			return redirect()->back()->with('message', 'Commentaire ajoutée avec succès.');
+		} else {
+			return view('illegal_access');//redirect()->back()->with('error', 'Erreur lors de l\'ajout de la commentaire.');
 		}
 	}
 
@@ -113,6 +139,9 @@ class ProjetController extends BaseController
 			'datecreation' => date('Y-m-d H:i:s', time()),
 			'idprojet' => $this->request->getPost('idprojet')
 		];
+
+		echo var_dump($data);
+		return;
 
 		// Insertion dans la base de données
 		if ($tacheModel->insert($data)) {

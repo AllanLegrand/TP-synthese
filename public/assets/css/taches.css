@@ -197,6 +197,41 @@ html {
 	align-items: center;
 }
 
+#commentTaskModal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#commentModal  h2{
+	margin: 10px;
+	margin-bottom: 30px;
+}
+
+#commentContent {
+	max-height: 300px;
+	overflow-y: auto; 
+	margin-bottom: 10px; 
+}
+
+.commentaire-simple {
+	border-radius: 8px;
+	background-color: #f4f4f4;
+	padding: 10px;
+	margin: 10px;
+	
+}
+
+.addContenu {
+	margin-bottom: 20px;
+}
+
 .modal-content {
 	background: white;
 	padding: 20px;
