@@ -19,31 +19,31 @@
 	</div>
 
 	<h2>Liste des Tâches</h2>
+	<div class="tri-options">
+		<form method="get" action="" class="tri-form">
+			<!-- Tri général -->
+			<select name="triColonne" id="tri" onchange="this.form.submit()">
+				<option value="datecreation_ASC" <?= $triColonne === 'datecreation' && $ordre === 'ASC' ? 'selected' : '' ?>>Date de création (ASC)</option>
+				<option value="datecreation_DESC" <?= $triColonne === 'datecreation' && $ordre === 'DESC' ? 'selected' : '' ?>>Date de création (DESC)</option>
+				<option value="titre_ASC" <?= $triColonne === 'titre' && $ordre === 'ASC' ? 'selected' : '' ?>>Titre (ASC)</option>
+				<option value="titre_DESC" <?= $triColonne === 'titre' && $ordre === 'DESC' ? 'selected' : '' ?>>Titre (DESC)</option>
+			</select>
+			
+			<!-- Filtrer par priorité -->
+			<select name="filtrePriorite" id="filtre-priorite" onchange="this.form.submit()">
+				<option value="Toutes" <?= $filtrePriorite === 'Toutes' ? 'selected' : '' ?>>Toutes</option>
+				<option value="Faible" <?= $filtrePriorite === 'Faible' ? 'selected' : '' ?>>Faible</option>
+				<option value="Moyenne" <?= $filtrePriorite === 'Moyenne' ? 'selected' : '' ?>>Moyenne</option>
+				<option value="Forte" <?= $filtrePriorite === 'Forte' ? 'selected' : '' ?>>Forte</option>
+			</select>
+		</form>
+	</div>
 
 	<?php if (!empty($taches)): ?>
 		<div class="task-columns">
 			<!-- À Faire -->
 			<div class="task-column a-faire">
 				<h3>À Faire</h3>
-				<div class="tri-options">
-					<form method="get" action="" class="tri-form">
-						<!-- Tri général -->
-						<select name="triColonne" id="tri" onchange="this.form.submit()">
-							<option value="datecreation_ASC" <?= $triColonne === 'datecreation' && $ordre === 'ASC' ? 'selected' : '' ?>>Date de création (ASC)</option>
-							<option value="datecreation_DESC" <?= $triColonne === 'datecreation' && $ordre === 'DESC' ? 'selected' : '' ?>>Date de création (DESC)</option>
-							<option value="titre_ASC" <?= $triColonne === 'titre' && $ordre === 'ASC' ? 'selected' : '' ?>>Titre (ASC)</option>
-							<option value="titre_DESC" <?= $triColonne === 'titre' && $ordre === 'DESC' ? 'selected' : '' ?>>Titre (DESC)</option>
-						</select>
-						
-						<!-- Filtrer par priorité -->
-						<select name="filtrePriorite" id="filtre-priorite" onchange="this.form.submit()">
-							<option value="Toutes" <?= $filtrePriorite === 'Toutes' ? 'selected' : '' ?>>Toutes</option>
-							<option value="Faible" <?= $filtrePriorite === 'Faible' ? 'selected' : '' ?>>Faible</option>
-							<option value="Moyenne" <?= $filtrePriorite === 'Moyenne' ? 'selected' : '' ?>>Moyenne</option>
-							<option value="Forte" <?= $filtrePriorite === 'Forte' ? 'selected' : '' ?>>Forte</option>
-						</select>
-					</form>
-				</div>
 				<?php foreach ($taches as $tache): ?>
 					<?php if ($tache['statut'] === 'A Faire'): ?>
 						<div class="task-card <?php echo (new DateTime($tache['echeance']) < new DateTime()) ? 'overdue' : ''; ?>">
@@ -83,25 +83,6 @@
 			<!-- En Cours -->
 			<div class="task-column en-cours">
 				<h3>En Cours</h3>
-				<div class="tri-options">
-					<form method="get" action="" class="tri-form">
-						<!-- Tri général -->
-						<select name="triColonne" id="tri" onchange="this.form.submit()">
-							<option value="datecreation_ASC" <?= $triColonne === 'datecreation' && $ordre === 'ASC' ? 'selected' : '' ?>>Date de création (ASC)</option>
-							<option value="datecreation_DESC" <?= $triColonne === 'datecreation' && $ordre === 'DESC' ? 'selected' : '' ?>>Date de création (DESC)</option>
-							<option value="titre_ASC" <?= $triColonne === 'titre' && $ordre === 'ASC' ? 'selected' : '' ?>>Titre (ASC)</option>
-							<option value="titre_DESC" <?= $triColonne === 'titre' && $ordre === 'DESC' ? 'selected' : '' ?>>Titre (DESC)</option>
-						</select>
-						
-						<!-- Filtrer par priorité -->
-						<select name="filtrePriorite" id="filtre-priorite" onchange="this.form.submit()">
-							<option value="Toutes" <?= $filtrePriorite === 'Toutes' ? 'selected' : '' ?>>Toutes</option>
-							<option value="Faible" <?= $filtrePriorite === 'Faible' ? 'selected' : '' ?>>Faible</option>
-							<option value="Moyenne" <?= $filtrePriorite === 'Moyenne' ? 'selected' : '' ?>>Moyenne</option>
-							<option value="Forte" <?= $filtrePriorite === 'Forte' ? 'selected' : '' ?>>Forte</option>
-						</select>
-					</form>
-				</div>
 				<?php foreach ($taches as $tache): ?>
 					<?php if ($tache['statut'] === 'En cours'): ?>
 						<div class="task-card <?php echo (new DateTime($tache['echeance']) < new DateTime()) ? 'overdue' : ''; ?>">
@@ -141,25 +122,6 @@
 			<!-- Terminées -->
 			<div class="task-column terminee">
 				<h3>Terminées</h3>
-				<div class="tri-options">
-					<form method="get" action="" class="tri-form">
-						<!-- Tri général -->
-						<select name="triColonne" id="tri" onchange="this.form.submit()">
-							<option value="datecreation_ASC" <?= $triColonne === 'datecreation' && $ordre === 'ASC' ? 'selected' : '' ?>>Date de création (ASC)</option>
-							<option value="datecreation_DESC" <?= $triColonne === 'datecreation' && $ordre === 'DESC' ? 'selected' : '' ?>>Date de création (DESC)</option>
-							<option value="titre_ASC" <?= $triColonne === 'titre' && $ordre === 'ASC' ? 'selected' : '' ?>>Titre (ASC)</option>
-							<option value="titre_DESC" <?= $triColonne === 'titre' && $ordre === 'DESC' ? 'selected' : '' ?>>Titre (DESC)</option>
-						</select>
-						
-						<!-- Filtrer par priorité -->
-						<select name="filtrePriorite" id="filtre-priorite" onchange="this.form.submit()">
-							<option value="Toutes" <?= $filtrePriorite === 'Toutes' ? 'selected' : '' ?>>Toutes</option>
-							<option value="Faible" <?= $filtrePriorite === 'Faible' ? 'selected' : '' ?>>Faible</option>
-							<option value="Moyenne" <?= $filtrePriorite === 'Moyenne' ? 'selected' : '' ?>>Moyenne</option>
-							<option value="Forte" <?= $filtrePriorite === 'Forte' ? 'selected' : '' ?>>Forte</option>
-						</select>
-					</form>
-				</div>
 				<?php foreach ($taches as $tache): ?>
 					<?php if ($tache['statut'] === 'Terminée'): ?>
 						<div class="task-card">
