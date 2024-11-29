@@ -21,12 +21,15 @@
                     <img src="/assets/img/PF.png" alt="Logo">
                 </a>
                 <!-- Boutons à gauche -->
-                <div class="d-flex align-items-center">
-                    <!-- Lien "Projets" -->
-                    <button class="btn btn-secondary" onclick="location.href='/projets';">Projets</button>
-                    <!-- Bouton "Créer" -->
-                    <button class="btn btn-primary" onclick="openModal()">Créer</button>
-                </div>
+                <!-- verifier si on a un idutil dans la session pour afficher les boutons -->
+                <?php if (session()->has('idutil')) : ?>
+                    <div class="d-flex align-items-center">
+                        <!-- Lien "Projets" -->
+                        <button class="btn btn-secondary" onclick="location.href='/projets';">Projets</button>
+                        <!-- Bouton "Créer" -->
+                        <button class="btn btn-primary" onclick="openModal()">Créer</button>
+                    </div>
+                <?php endif; ?>
                 <!-- Barre de recherche + icône utilisateur -->
                 <div class="ms-auto d-flex align-items-center position-relative">
                     <input type="text" class="form-control search-bar me-2" placeholder="Rechercher..." oninput="searchProjects(this.value)">

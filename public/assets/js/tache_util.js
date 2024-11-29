@@ -127,3 +127,45 @@ function showErrorMessage(message) {
         errorElement.style.display = 'none';
     }, 3000); // Hide the error message after 3 seconds
 }
+
+// Fonction pour filtrer les utilisateurs
+function filterUsers() {
+    const searchInput = document.getElementById('popupShareUserSearch');
+    const searchResults = document.getElementById('searchResultsUsers');
+    const query = searchInput.value.trim();
+
+    fetch(`/recherche-utilisateur?query=${query}`)
+        .then(response => response.json())
+        .then(data => {
+            searchResults.innerHTML = '';
+
+            if (data.length > 0) {
+                data.forEach(user => {
+                    const li = document.createElement('li');
+                    li.textContent = `${user.prenom} ${user.nom} (${user.mail})`;
+                    li.style.cursor = 'pointer';
+                    li.onclick = () => selectUser(user);
+                    searchResults.appendChild(li);
+                });
+                searchResults.style.display = 'block';
+            } else {
+                searchResults.innerHTML = '<li>Aucun utilisateur trouvé.</li>';
+                searchResults.style.display = 'block';
+            }
+        })
+        .catch(error => {
+            console.error('Erreur lors de la recherche d\'utilisateurs:', error);
+        });
+}
+
+function selectUser(user) {
+    const searchInput = document.getElementById('popupShareUserSearch');
+    const searchResults = document.getElementById('searchResultsUsers');
+    
+    searchInput.value = user.mail;
+    document.getElementById('selectedUserId').value = user.idutil;
+    console.log(user.idutil);
+    searchResults.style.display = 'none';
+}
+
+

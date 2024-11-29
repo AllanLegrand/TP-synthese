@@ -47,3 +47,6 @@ $routes->post('projet/partager', 'ProjetController::partagerProjet');
 
 $routes->get('/recherche', 'ProjetController::rechercheProjets');
 
+$routes->get('/recherche-utilisateur', 'ProjetController::rechercherUtilisateur');
+
+
