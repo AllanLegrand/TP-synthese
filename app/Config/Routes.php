@@ -49,4 +49,5 @@ $routes->get('/recherche', 'ProjetController::rechercheProjets');
 
 $routes->get('/recherche-utilisateur', 'ProjetController::rechercherUtilisateur');
 
+$routes->post('/ajouterCommentaire', 'ProjetController::ajouterCommentaire');
 

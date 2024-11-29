@@ -1,60 +1,38 @@
-# CodeIgniter 4 Framework
+#Planifast : Service de Gestion de Tache
+Réalisée par 
 
-## What is CodeIgniter?
+> CHAMPVILLARD Sébastien
+> Trystan BAILLOBAY 
+> Allan LEGRAND 
+> Lorenzo DE MACEDO
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+##Une application simple et efficace
+  Cette application a pour but de facilement gérer des projets et leur taches en collaboration avec plusieurs personnes.
+  
 
-This repository holds the distributable version of the framework.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+##Prérequis
+    Cette application est réalisée à l'aide de PHP, JavaScript et Postgresql. Cela implique quelques prérequis avant d'utiliser l'application.
 
-You can read the [user guide](https://codeigniter.com/user_guide/)
-corresponding to the latest version of the framework.
+>   Il faut avoir installé et configuré Postgresql.
+>   Il faut accèder au fichier app/config/Database.php et configurer ce fichier.
+>   Il faut avoir installé PHP.
 
-## Important Change with index.php
+  Quand tout cela est fini, il faudra accéder dans une console à la racine du projet : "TP-Synthese/" et lancer la commande "php spark serve".
+  Pour accéder au site, aller à l'adresse "Localhost:8080/" sur votre navigateur.
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+##Utilisation
 
-**Please** read the user guide for a better explanation of how CI4 works!
+  Pour utiliser le site, il faut s'inscrire et se connecter. 
+  Une fois connecté, vous pouvez cliquer sur les boutons "Projets" et "Créer" pour voir les projets qui vous sont associés ou en créer de nouveaux.
+  En haut à droite, un bouton en forme de bonhomme est disponible pour accéder à votre profil et modifier ou supprimer votre compte.
+  
+   ATTENTION : Supprimer son compte est irréversible et supprimera toutes vos données ainsi que tous vos projets et autres participations dans le site.
 
-## Repository Management
+  Une fois qu'un projet est créé, vous accédez tout de suite à la page correspondante.
+  Vous pouvez alors Ajouter, modifier et supprimer des tâches en plus de pouvoir ajouter des commentaires sur celles-ci.
+  Pour ajouter de nouvelles personnes au projet, cliquez sur le bouton "partager" et ajoutez les avec leur addresse mail renseignée sur le site. 
+    Une personne sans compte ne peut être ajoutée et sera marquée comme non trouvée.
 
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
-
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
-
-## Contributing
-
-We welcome contributions from the community.
-
-Please read the [*Contributing to CodeIgniter*](https://github.com/codeigniter4/CodeIgniter4/blob/develop/CONTRIBUTING.md) section in the development repository.
-
-## Server Requirements
-
-PHP version 8.1 or higher is required, with the following extensions installed:
-
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
-
-> [!WARNING]
-> - The end of life date for PHP 7.4 was November 28, 2022.
-> - The end of life date for PHP 8.0 was November 26, 2023.
-> - If you are still using PHP 7.4 or 8.0, you should upgrade immediately.
-> - The end of life date for PHP 8.1 will be December 31, 2025.
-
-Additionally, make sure that the following extensions are enabled in your PHP:
-
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+ Vous pouvez quitter à tout moment un projet, mais attention, un projet ne sera supprimé QUE si le projet ne possède aucun participant, même si c'est vous qui l'avez créé.

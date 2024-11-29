@@ -49,7 +49,7 @@
                             </p>
                             <div class="task-actions">
                                 <img src="/assets/img/chat.png" alt="commentaire" class="icon"
-                                    onclick="openEditModal(<?= htmlspecialchars(json_encode($tache), ENT_QUOTES, 'UTF-8') ?>)" />
+                                    onclick="openCommentModal(<?= htmlspecialchars(json_encode($commentaires), ENT_QUOTES, 'UTF-8') ?>, <?= $tache['idtache'] ?>)" />
                                 <img src="/assets/img/pencil.png" alt="Modifier" class="icon"
                                     onclick="openEditModal(<?= htmlspecialchars(json_encode($tache), ENT_QUOTES, 'UTF-8') ?>)" />
                                 <img src="/assets/img/remove.png" alt="Supprimer" class="icon"
@@ -88,7 +88,7 @@
                             </p>
                             <div class="task-actions">
                                 <img src="/assets/img/chat.png" alt="commentaire" class="icon"
-                                    onclick="openEditModal(<?= htmlspecialchars(json_encode($tache), ENT_QUOTES, 'UTF-8') ?>)" />
+                                    onclick="openCommentModal(<?= htmlspecialchars(json_encode($commentaires), ENT_QUOTES, 'UTF-8') ?>, <?= $tache['idtache'] ?>)" />
                                 <img src="/assets/img/pencil.png" alt="Modifier" class="icon"
                                     onclick="openEditModal(<?= htmlspecialchars(json_encode($tache), ENT_QUOTES, 'UTF-8') ?>)" />
                                 <img src="/assets/img/remove.png" alt="Supprimer" class="icon"
@@ -122,7 +122,7 @@
                             </p>
 							<div class="task-actions">
                                 <img src="/assets/img/chat.png" alt="commentaire" class="icon"
-                                    onclick="openEditModal(<?= htmlspecialchars(json_encode($tache), ENT_QUOTES, 'UTF-8') ?>)" />
+                                    onclick="openCommentModal(<?= htmlspecialchars(json_encode($commentaires), ENT_QUOTES, 'UTF-8') ?>, <?= $tache['idtache'] ?>)" />
                                 <img src="/assets/img/pencil.png" alt="Modifier" class="icon"
                                     onclick="openEditModal(<?= htmlspecialchars(json_encode($tache), ENT_QUOTES, 'UTF-8') ?>)" />
                                 <img src="/assets/img/remove.png" alt="Supprimer" class="icon"
@@ -264,7 +264,23 @@
 		</form>
 	</div>
 </div>
+<div id="commentTaskModal" style="display: none;"></div>
+	<div id="commentModal" class="modal-content" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 20px; border: 1px solid #ccc; z-index: 1000;">
+		<span onclick="closeCommentModal()" id="closeAddModal" style="cursor: pointer;">&times;</span>
+		<h2>Commentaires</h2>
+		<div id="commentContent"></div>
 
+		<form id="commentTaskForm" method="POST" action="/ajouterCommentaire">
+			<div>
+				<input type="text" placeholder="Commenter vos idées ;)" id="addContenu" class="addContenu" name="contenu" required>
+				<button type="submit">Commenter</button>
+				<input type="hidden" id="idtacheCommentaire" name="idtache" readonly>
+			</div>
+		</form>
+	</div>
+</div>
+
+<div id="modalOverlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 999;" onclick="closeCommentModal()"></div>
 <script src="/assets/js/tache_util.js"></script>
 
 <!-- Popup Bouton partager -->

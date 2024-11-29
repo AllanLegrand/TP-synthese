@@ -197,6 +197,37 @@ html {
 	align-items: center;
 }
 
+#commentTaskModal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#commentModal  h2{
+	margin: 10px;
+	margin-bottom: 30px;
+}
+
+
+
+.commentaire-simple {
+	border-radius: 8px;
+	background-color: #f4f4f4;
+	padding: 10px;
+	margin: 10px;
+	
+}
+
+.addContenu {
+	margin-bottom: 20px;
+}
+
 .modal-content {
 	background: white;
 	padding: 20px;
@@ -461,4 +492,56 @@ form button {
 
 form button:hover {
 	background-color: #614DE4;
+}
+
+.pagination {
+    margin-top: 10px;
+    text-align: center;
+}
+.pagination button {
+    margin: 0 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    background-color: #f1f1f1;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+.page-item.active {
+	background-color: #614DE4;
+    color: white;
+    border-color: #49229c;
+}
+
+.pagination button.active {
+    background-color: #614DE4;
+    color: white;
+    border-color: #49229c;
+}
+.pagination button:hover {
+    background-color: #614DE4;
+    color: white;
+}
+
+.custom-pagination .page-item .page-link {
+    background-color: #f8f9fa; /* Couleur de fond par défaut */
+    color: #614DE4; /* Couleur du texte */
+    border: 1px solid #dee2e6; /* Bordure */
+}
+
+.custom-pagination .page-item.active .page-link {
+    background-color: #614DE4; /* Couleur de fond pour l'état actif */
+    color: white; /* Couleur du texte pour l'état actif */
+    border-color: #49229c; /* Bordure pour l'état actif */
+}
+
+.custom-pagination .page-item .page-link:hover {
+    background-color: #49229c; /* Couleur de fond au survol */
+    color: #e2e6ea; /* Couleur du texte au survol */
+}
+
+.custom-pagination .page-item.disabled .page-link {
+    background-color: #f8f9fa; /* Couleur de fond pour les boutons désactivés */
+    color: #6c757d; /* Couleur du texte pour les boutons désactivés */
+    border-color: #dee2e6; /* Bordure pour les boutons désactivés */
 }
