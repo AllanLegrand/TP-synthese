@@ -48,10 +48,6 @@ class ProjetController extends BaseController
 
 		$taches = $tacheModel->getTaches($projet, $triColonne, $ordre, $filtrePriorite);
 
-		$tachesAFaire = $tacheModel->getTachesByStatut($projet, 'A Faire', $triColonne, $ordre, 0, 10);
-    	$tachesEnCours = $tacheModel->getTachesByStatut($projet, 'En cours', $triColonne, $ordre, 0, 10);
-    	$tachesTerminees = $tacheModel->getTachesByStatut($projet, 'Terminée', $triColonne, $ordre, 0, 10);
-
 		$utilisateurs = $projetModel->getUsersByProject($projet);
 		$commentaireModel = new CommentaireModele();
 		$commentaires = $commentaireModel->getCommentaireByProject($projet);
@@ -63,9 +59,6 @@ class ProjetController extends BaseController
 			'projet' => $projets[$index],
 			'taches' => $taches,
 			'triColonne' => $triColonne,
-			'tachesAFaire' => $tachesAFaire,
-        	'tachesEnCours' => $tachesEnCours,
-        	'tachesTerminees' => $tachesTerminees,
 			'ordre' => $ordre,
 			'filtrePriorite' => $filtrePriorite,
 			'commentaires' => $commentaires,

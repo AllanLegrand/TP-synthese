@@ -44,7 +44,7 @@
 						</select>
 					</form>
 				</div>
-				<?php foreach ($tachesAFaire as $tache): ?>
+				<?php foreach ($taches as $tache): ?>
 					<?php if ($tache['statut'] === 'A Faire'): ?>
 						<div class="task-card <?php echo (new DateTime($tache['echeance']) < new DateTime()) ? 'overdue' : ''; ?>">
                             <!-- Logo en retard -->
@@ -102,7 +102,7 @@
 						</select>
 					</form>
 				</div>
-				<?php foreach ($tachesEnCours as $tache): ?>
+				<?php foreach ($taches as $tache): ?>
 					<?php if ($tache['statut'] === 'En cours'): ?>
 						<div class="task-card <?php echo (new DateTime($tache['echeance']) < new DateTime()) ? 'overdue' : ''; ?>">
                             <!-- Logo en retard -->
@@ -160,7 +160,7 @@
 						</select>
 					</form>
 				</div>
-				<?php foreach ($tachesTerminees as $tache): ?>
+				<?php foreach ($taches as $tache): ?>
 					<?php if ($tache['statut'] === 'Terminée'): ?>
 						<div class="task-card">
 							<h4><?= esc($tache['titre']) ?></h4>
