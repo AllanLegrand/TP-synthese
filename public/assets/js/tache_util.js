@@ -171,6 +171,8 @@ function openCommentModal(commentaires, idtache) {
 
         document.getElementById('commentContent').innerHTML = commentContent;
 
+        document.getElementById('idtacheCommentaire').value = idtache;
+
         // Mettre à jour la pagination
         renderPagination();
     }
@@ -206,6 +208,8 @@ function openCommentModal(commentaires, idtache) {
             paginationList.appendChild(pageItem);
         }
 
+        
+
         // Bouton "Suivant"
         const nextItem = document.createElement('li');
         nextItem.className = `page-item ${currentPage === totalPages ? 'disabled' : ''}`;
@@ -229,12 +233,7 @@ function openCommentModal(commentaires, idtache) {
         }
     };
 
-    // Initialiser le modal
-    if (filteredComments.length > 0) {
-        document.getElementById('idtacheCommentaire').value = idtache;
-    } else {
-        document.getElementById('idtacheCommentaire').innerHTML = 'Aucune tâche associée.';
-    }
+    
 
     renderComments(currentPage);
 
