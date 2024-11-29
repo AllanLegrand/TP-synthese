@@ -214,11 +214,7 @@ html {
 	margin-bottom: 30px;
 }
 
-#commentContent {
-	max-height: 300px;
-	overflow-y: auto; 
-	margin-bottom: 10px; 
-}
+
 
 .commentaire-simple {
 	border-radius: 8px;
@@ -415,4 +411,27 @@ form button {
 
 form button:hover {
 	background-color: #614DE4;
+}
+
+.pagination {
+    margin-top: 10px;
+    text-align: center;
+}
+.pagination button {
+    margin: 0 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    background-color: #f1f1f1;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+.pagination button.active {
+    background-color: #007bff;
+    color: white;
+    border-color: #0056b3;
+}
+.pagination button:hover {
+    background-color: #007bff;
+    color: white;
 }

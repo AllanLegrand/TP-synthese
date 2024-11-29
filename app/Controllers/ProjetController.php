@@ -98,7 +98,7 @@ class ProjetController extends BaseController
 		if ($commentaireModel->insert($data)) {
 			return redirect()->back()->with('message', 'Commentaire ajoutée avec succès.');
 		} else {
-			return view('illegal_access');//redirect()->back()->with('error', 'Erreur lors de l\'ajout de la commentaire.');
+			redirect()->back()->with('error', 'Erreur lors de l\'ajout de la commentaire.');
 		}
 	}
 
@@ -139,9 +139,6 @@ class ProjetController extends BaseController
 			'datecreation' => date('Y-m-d H:i:s', time()),
 			'idprojet' => $this->request->getPost('idprojet')
 		];
-
-		echo var_dump($data);
-		return;
 
 		// Insertion dans la base de données
 		if ($tacheModel->insert($data)) {

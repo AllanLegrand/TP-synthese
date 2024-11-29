@@ -138,67 +138,104 @@ function showErrorMessage(message) {
 function openCommentModal(commentaires, idtache) {
     // Filtrer les commentaires selon idtache
     const filteredComments = commentaires.filter(comment => comment.idtache === idtache.toString());
+    const commentsPerPage = 5; // Nombre de commentaires par page
+    let currentPage = 1;
 
-    // Vérifier s'il y a des commentaires pour cette tâche
+    // Fonction pour afficher une page spécifique de commentaires
+    function renderComments(page) {
+        const startIndex = (page - 1) * commentsPerPage;
+        const endIndex = startIndex + commentsPerPage;
+        const paginatedComments = filteredComments.slice(startIndex, endIndex);
+
+        // Générer le contenu HTML pour les commentaires
+        const commentContent = paginatedComments.length
+            ? paginatedComments.map(comment => {
+                const commentDate = new Date(comment.datecom);
+                const formattedDate = new Intl.DateTimeFormat('fr-FR', {
+                    day: '2-digit',
+                    month: 'short',
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                }).format(commentDate).replace('.', '').toLowerCase();
+
+                return `
+                    <div id="commentaire-simple" class="commentaire-simple">
+                        <p><strong>${comment.prenom} ${comment.nom}</strong> <small>${formattedDate}</small></p>
+                        <p>${comment.contenu}</p>
+                    </div>
+                `;
+            }).join('')
+            : '<p>Aucun commentaire pour cette tâche.</p>';
+
+        document.getElementById('commentContent').innerHTML = commentContent;
+
+        // Mettre à jour la pagination
+        renderPagination();
+    }
+
+    // Fonction pour afficher les contrôles de pagination avec Bootstrap
+    function renderPagination() {
+        const totalPages = Math.ceil(filteredComments.length / commentsPerPage);
+        const paginationContainer = document.createElement('nav');
+        paginationContainer.setAttribute('aria-label', 'Page navigation example');
+
+        const paginationList = document.createElement('ul');
+        paginationList.className = 'pagination justify-content-end';
+
+        // Bouton "Précédent"
+        const prevItem = document.createElement('li');
+        prevItem.className = `page-item ${currentPage === 1 ? 'disabled' : ''}`;
+        prevItem.innerHTML = `<a class="page-link" href="#" onclick="changePage(${currentPage - 1})"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+  <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+</svg></a>`;
+        paginationList.appendChild(prevItem);
+
+        // Numéros de page
+        for (let i = 1; i <= totalPages; i++) {
+            const pageItem = document.createElement('li');
+            pageItem.className = `page-item ${i === currentPage ? 'active' : ''}`;
+            pageItem.innerHTML = `<a class="page-link" href="#" onclick="changePage(${i})">${i}</a>`;
+            paginationList.appendChild(pageItem);
+        }
+
+        // Bouton "Suivant"
+        const nextItem = document.createElement('li');
+        nextItem.className = `page-item ${currentPage === totalPages ? 'disabled' : ''}`;
+        nextItem.innerHTML = `<a class="page-link" href="#" onclick="changePage(${currentPage + 1})"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+  <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+</svg></a>`;
+        paginationList.appendChild(nextItem);
+
+        paginationContainer.appendChild(paginationList);
+
+        // Ajouter la pagination sous les commentaires
+        document.getElementById('commentContent').appendChild(paginationContainer);
+    }
+
+    // Fonction pour changer de page
+    window.changePage = function (page) {
+        if (page >= 1 && page <= Math.ceil(filteredComments.length / commentsPerPage)) {
+            currentPage = page;
+            renderComments(page);
+        }
+    };
+
+    // Initialiser le modal
     if (filteredComments.length > 0) {
-        // Utiliser le premier commentaire (ou un autre logique)
-        const firstComment = filteredComments[0];
-
-        // Convertir la date du premier commentaire
-        const dateString = firstComment.datecom;
-        const date = new Date(dateString);
-
-        // Formatteur pour afficher la date au format souhaité
-        const formatter = new Intl.DateTimeFormat('fr-FR', {
-            day: '2-digit',
-            month: 'short',
-            year: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit',
-        });
-
-        // Formater et afficher la date
-        const formattedDate = formatter.format(date).replace('.', '').toLowerCase();
-
-        // Afficher l'id de la tâche dans le modal
-        document.getElementById('idtacheCommentaire').value = firstComment.idtache;
+        document.getElementById('idtacheCommentaire').value = idtache;
     } else {
-        // Si aucun commentaire n'est trouvé, afficher un message approprié
         document.getElementById('idtacheCommentaire').innerHTML = 'Aucune tâche associée.';
     }
 
-    // Générer le contenu HTML pour les commentaires
-    const commentContent = filteredComments.length
-        ? filteredComments.map(comment => {
-            const commentDate = new Date(comment.datecom);
-            const formattedDate = new Intl.DateTimeFormat('fr-FR', {
-                day: '2-digit',
-                month: 'short',
-                year: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit',
-            }).format(commentDate).replace('.', '').toLowerCase();
-
-            return `
-                <div id="commentaire-simple" class="commentaire-simple">
-                    <p><strong>${comment.prenom} ${comment.nom}</strong> <small> ${formattedDate}</small></p>
-                    <p>${comment.contenu}</p>
-                </div>
-            `;
-        }).join('')
-        : '<p>Aucun commentaire pour cette tâche.</p>';
-
-    // Insérer le contenu dans le modal
-    document.getElementById('commentContent').innerHTML = commentContent;
+    renderComments(currentPage);
 
     // Afficher le modal et l'overlay
     document.getElementById('commentModal').style.display = 'block';
     document.getElementById('modalOverlay').style.display = 'block';
 }
 
-
 function closeCommentModal() {
-    // Cacher le modal et l'overlay
     document.getElementById('commentModal').style.display = 'none';
     document.getElementById('modalOverlay').style.display = 'none';
 }
