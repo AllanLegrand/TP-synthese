@@ -64,41 +64,80 @@ class TacheModel extends Model
 		return $this->delete($idTache);
 	}
 
-
-	/* 
-	   /////////////////////////////
-	   ///EXEMPLE D'UTILISATION : //
-	   /////////////////////////////
-
-
-		  $tacheModel = new \App\Models\TacheModel();
-
-	  // Ajouter une tâche
-	  $newTache = [
-		  'titre' => 'Nouvelle Tâche',
-		  'description' => 'Description de la tâche',
-		  'echeance' => '2024-12-31',
-		  'priorite' => 'Forte',
-		  'statut' => 'A Faire',
-		  'idProjet' => 1
-	  ];
-	  $tacheModel->ajouterTache($newTache);
-
-	  // Modifier une tâche
-	  $tacheModel->modifTache(1, ['statut' => 'En cours']);
-
-	  // Supprimer une tâche
-	  $tacheModel->supprTache(1);
-
-		  
-		  
-		  
-		  */
 	public function getTachesByProject(int $idProjet): array
 	{
 		return $this->db->table('tache')->where('idprojet', $idProjet)
 			->orderBy('datecreation', 'ASC') // Facultatif : trie les tâches par date de création
 			->get()
 			->getResultArray();
+	}
+
+	public function getTaches(int $idProjet, string $triColonne = 'datecreation', string $ordre = 'ASC', string $priorite = 'Toutes'): array
+	{
+		$validColumns = ['titre', 'datecreation', 'priorite']; // Colonnes autorisées pour le tri
+		$validOrder = ['ASC', 'DESC']; // Ordres autorisés
+		$validPriorites = ['Faible', 'Moyenne', 'Forte'];
+
+		// Valider les entrées pour éviter les injections SQL
+		if (!in_array($triColonne, $validColumns)) {
+			$triColonne = 'datecreation';
+		}
+		if (!in_array($ordre, $validOrder)) {
+			$ordre = 'ASC';
+		}
+		if (!in_array($priorite, $validPriorites) && $priorite != 'Toutes') {
+			$priorite = 'Toutes';
+		}
+
+		// Commencer la requête avec l'id du projet
+		$query = $this->where('idprojet', $idProjet);
+
+		// Appliquer le filtre par priorité si nécessaire
+		if ($priorite != 'Toutes') {
+			$query = $query->where('priorite', $priorite);
+		}
+
+		// Appliquer le tri
+		return $query->orderBy($triColonne, $ordre)
+					->findAll();
+	}
+
+	public function getTachesByStatut(int $idProjet, string $statut, string $triColonne = 'datecreation', string $ordre = 'ASC', string $priorite = 'Toutes'): array
+	{
+		$validColumns = ['titre', 'datecreation', 'priorite']; // Colonnes autorisées pour le tri
+		$validOrder = ['ASC', 'DESC']; // Ordres autorisés
+		$validPriorites = ['Faible', 'Moyenne', 'Forte'];
+
+		// Valider les entrées pour éviter les injections SQL
+		if (!in_array($triColonne, $validColumns)) {
+			$triColonne = 'datecreation';
+		}
+		if (!in_array($ordre, $validOrder)) {
+			$ordre = 'ASC';
+		}
+		if (!in_array($priorite, $validPriorites) && $priorite != 'Toutes') {
+			$priorite = 'Toutes';
+		}
+
+		// Commencer la requête avec l'id du projet et le statut
+		$query = $this->where('idprojet', $idProjet)
+					->where('statut', $statut);
+
+		// Appliquer le filtre par priorité si nécessaire
+		if ($priorite != 'Toutes') {
+			$query = $query->where('priorite', $priorite);
+		}
+
+		// Appliquer le tri
+		return $query->orderBy($triColonne, $ordre)
+					->findAll();
+	}
+
+	// Méthode pour compter le nombre de tâches par statut
+	public function countTachesByStatut(int $idProjet, string $statut): int
+	{
+		return $this->where('idprojet', $idProjet)
+					->where('statut', $statut)
+					->countAllResults();
 	}
 }
