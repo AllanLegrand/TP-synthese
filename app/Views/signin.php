@@ -10,12 +10,11 @@
 
 <body>
 	<div class="signin-container">
-		<!-- Partie gauche -->
 		<div class="left-side">
-			<img src="/assets/img/PF-2.png" alt="Logo">
+			<a href="<?= base_url('Accueil') ?>">
+				<img src="/assets/img/PF-2.png" alt="Logo">
+			</a>
 		</div>
-
-		<!-- Partie droite -->
 		<div class="right-side">
 			<form action="/SigninController/loginAuth" method="post">
 				<h3>Connexion</h3>

@@ -60,4 +60,21 @@ class UtilisateurModele extends Model
 	{
 		return $this->delete($idUtil);
 	}
+
+	/**
+	 * Recherche les Utilisateurs par nom.
+	 *
+	 * @param string $query Nom à rechercher
+	 * @return array Résultats de la recherche
+	 */
+	public function rechercherParEmail(string $query)
+	{
+		return $this->db->table('utilisateur')
+						->select('idutil, prenom, nom, mail')
+						->like('LOWER(mail)', strtolower($query), 'after') // Recherche les e-mails commençant par la chaîne
+						->get()->getResultArray();
+	}
+	
+
+
 }

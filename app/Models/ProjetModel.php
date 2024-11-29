@@ -37,7 +37,7 @@ class ProjetModel extends Model
 			->join('groupe', 'groupe.idprojet = projet.idprojet')
 			->join('tache', 'tache.idprojet = projet.idprojet', 'left')
 			->where('groupe.idutil', $idUtil)
-			->like('LOWER(titreprojet)', strtolower($title)) // Utilisez 'ILIKE' dans PostgreSQL ou ici 'LIKE' avec insensibilité à la casse
+			->like('LOWER(titreprojet)', strtolower($title), 'after') // Utilisez 'ILIKE' dans PostgreSQL ou ici 'LIKE' avec insensibilité à la casse
 			->groupBy('projet.idprojet')
 			->get()
 			->getResultArray();

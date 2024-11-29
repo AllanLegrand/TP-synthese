@@ -52,7 +52,9 @@
 			</form>
 		</div>
 		<div class="right-side">
-			<img src="/assets/img/PF-2.png" alt="Logo">
+			<a href="<?= base_url('Accueil') ?>">
+				<img src="/assets/img/PF-2.png" alt="Logo">
+			</a>
 		</div>
 	</div>
 	<script src="/assets/js/signup.js"></script>

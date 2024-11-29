@@ -230,4 +230,23 @@ class ProjetController extends BaseController
 		
 		return $this->response->setJSON(['success' => $updated]);
 	}
+
+	public function rechercherUtilisateur()
+	{
+		// Vérifie si la requête contient un paramètre 'query'
+		if ($this->request->getGet('query')) {
+			$query = $this->request->getGet('query');
+
+			// Charger le modèle
+			$userModel = new \App\Models\UtilisateurModele();
+			
+			// Appelle le modèle pour rechercher les utilisateurs dont l'email correspond au 'LIKE' de la query
+			$utilisateurs = $userModel->rechercherParEmail($query);
+			
+			// Retourne les résultats sous forme JSON
+			return $this->response->setJSON($utilisateurs);
+		}
+		return $this->response->setJSON([]);
+	}
+
 }

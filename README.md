@@ -1,60 +1,31 @@
-# CodeIgniter 4 Framework
+# Planifast : Service de Gestion de Tâche
 
-## What is CodeIgniter?
+## Réalisée par
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+- CHAMPVILLARD Sébastien  
+- Trystan BAILLOBAY  
+- Allan LEGRAND  
+- Lorenzo DE MACEDO  
 
-This repository holds the distributable version of the framework.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+## Une application simple et efficace
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+Cette application a pour but de facilement gérer des projets et leurs tâches en collaboration avec plusieurs personnes.
 
-You can read the [user guide](https://codeigniter.com/user_guide/)
-corresponding to the latest version of the framework.
+## Prérequis
 
-## Important Change with index.php
+Cette application est réalisée à l'aide de PHP, JavaScript et PostgreSQL. Cela implique quelques prérequis avant d'utiliser l'application :
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+- Il faut avoir installé et configuré PostgreSQL.  
+- Il faut accéder au fichier `app/config/Database.php` et configurer ce fichier si vous êtes hors de l'IUT.  
+- Il faudra accéder au dossier `app/Database` dans une console PostgreSQL et lancer les scripts suivants :  
+  - `create.sql`  
+  - `scripts/supprProjetsOrphelins.sql`  
+- Il faut accéder au fichier `app/config/Email.php` et configurer ce fichier si vous voulez définir une adresse mail que vous contrôlez.  
+- Il faut avoir installé PHP.
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+Une fois cela fait, accédez à la racine du projet (`TP-Synthese/`) dans une console et lancez la commande suivante :  
 
-**Please** read the user guide for a better explanation of how CI4 works!
-
-## Repository Management
-
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
-
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
-
-## Contributing
-
-We welcome contributions from the community.
-
-Please read the [*Contributing to CodeIgniter*](https://github.com/codeigniter4/CodeIgniter4/blob/develop/CONTRIBUTING.md) section in the development repository.
-
-## Server Requirements
-
-PHP version 8.1 or higher is required, with the following extensions installed:
-
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
-
-> [!WARNING]
-> - The end of life date for PHP 7.4 was November 28, 2022.
-> - The end of life date for PHP 8.0 was November 26, 2023.
-> - If you are still using PHP 7.4 or 8.0, you should upgrade immediately.
-> - The end of life date for PHP 8.1 will be December 31, 2025.
-
-Additionally, make sure that the following extensions are enabled in your PHP:
-
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+```bash
+php spark serve
+```
+Pour accéder au site, ouvrez votre navigateur et rendez-vous à l'adresse suivante : http://localhost:8080/.

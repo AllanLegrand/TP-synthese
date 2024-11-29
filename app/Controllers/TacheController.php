@@ -39,4 +39,8 @@ class TacheController extends BaseController
         // Rediriger avec un message de succès
         return redirect()->to('/projet')->with('success', 'Tâche modifiée avec succès.');
     }
+
+
+    // Exemple dans le contrôleur (par exemple ProjetController.php)
+
 }

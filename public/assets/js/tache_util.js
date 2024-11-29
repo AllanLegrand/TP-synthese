@@ -135,10 +135,52 @@ function showErrorMessage(message) {
     }, 3000); // Hide the error message after 3 seconds
 }
 
+// Fonction pour filtrer les utilisateurs
+function filterUsers() {
+    const searchInput = document.getElementById('popupShareUserSearch');
+    const searchResults = document.getElementById('searchResultsUsers');
+    const query = searchInput.value.trim();
+
+    fetch(`/recherche-utilisateur?query=${query}`)
+        .then(response => response.json())
+        .then(data => {
+            searchResults.innerHTML = '';
+
+            if (data.length > 0) {
+                data.forEach(user => {
+                    const li = document.createElement('li');
+                    li.textContent = `${user.prenom} ${user.nom} (${user.mail})`;
+                    li.style.cursor = 'pointer';
+                    li.onclick = () => selectUser(user);
+                    searchResults.appendChild(li);
+                });
+                searchResults.style.display = 'block';
+            } else {
+                searchResults.innerHTML = '<li>Aucun utilisateur trouvé.</li>';
+                searchResults.style.display = 'block';
+            }
+        })
+        .catch(error => {
+            console.error('Erreur lors de la recherche d\'utilisateurs:', error);
+        });
+}
+
+function selectUser(user) {
+    const searchInput = document.getElementById('popupShareUserSearch');
+    const searchResults = document.getElementById('searchResultsUsers');
+    
+    searchInput.value = user.mail;
+    document.getElementById('selectedUserId').value = user.idutil;
+    console.log(user.idutil);
+    searchResults.style.display = 'none';
+}
+
+
 function openCommentModal(commentaires, idtache) {
     // Filtrer les commentaires selon idtache
     const filteredComments = commentaires.filter(comment => comment.idtache === idtache.toString());
-    const commentsPerPage = 5; // Nombre de commentaires par page
+    const commentsPerPage = 3; // Nombre de commentaires par page
+    const maxVisiblePages = 4; // Nombre maximum de numéros de pages visibles
     let currentPage = 1;
 
     // Fonction pour afficher une page spécifique de commentaires
@@ -170,18 +212,20 @@ function openCommentModal(commentaires, idtache) {
 
         document.getElementById('commentContent').innerHTML = commentContent;
 
+        document.getElementById('idtacheCommentaire').value = idtache;
+
         // Mettre à jour la pagination
         renderPagination();
     }
 
-    // Fonction pour afficher les contrôles de pagination avec Bootstrap
+    // Fonction pour afficher les contrôles de pagination avec limite de numéros visibles
     function renderPagination() {
         const totalPages = Math.ceil(filteredComments.length / commentsPerPage);
         const paginationContainer = document.createElement('nav');
         paginationContainer.setAttribute('aria-label', 'Page navigation example');
 
         const paginationList = document.createElement('ul');
-        paginationList.className = 'pagination justify-content-end';
+        paginationList.className = 'pagination justify-content-center custom-pagination';
 
         // Bouton "Précédent"
         const prevItem = document.createElement('li');
@@ -191,13 +235,21 @@ function openCommentModal(commentaires, idtache) {
 </svg></a>`;
         paginationList.appendChild(prevItem);
 
-        // Numéros de page
-        for (let i = 1; i <= totalPages; i++) {
+        // Déterminer les numéros de pages à afficher
+        const startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+        const endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+
+        // Si le début des pages est décalé à cause de la limite supérieure
+        const adjustedStartPage = Math.max(1, endPage - maxVisiblePages + 1);
+
+        for (let i = adjustedStartPage; i <= endPage; i++) {
             const pageItem = document.createElement('li');
             pageItem.className = `page-item ${i === currentPage ? 'active' : ''}`;
             pageItem.innerHTML = `<a class="page-link" href="#" onclick="changePage(${i})">${i}</a>`;
             paginationList.appendChild(pageItem);
         }
+
+        
 
         // Bouton "Suivant"
         const nextItem = document.createElement('li');
@@ -215,18 +267,14 @@ function openCommentModal(commentaires, idtache) {
 
     // Fonction pour changer de page
     window.changePage = function (page) {
-        if (page >= 1 && page <= Math.ceil(filteredComments.length / commentsPerPage)) {
+        const totalPages = Math.ceil(filteredComments.length / commentsPerPage);
+        if (page >= 1 && page <= totalPages) {
             currentPage = page;
             renderComments(page);
         }
     };
 
-    // Initialiser le modal
-    if (filteredComments.length > 0) {
-        document.getElementById('idtacheCommentaire').value = idtache;
-    } else {
-        document.getElementById('idtacheCommentaire').innerHTML = 'Aucune tâche associée.';
-    }
+    
 
     renderComments(currentPage);
 
