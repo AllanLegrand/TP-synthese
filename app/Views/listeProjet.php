@@ -22,10 +22,11 @@
 		</div>
 	</div>
 <?php else: ?>
-	<br>
-	<h1 class="text-center mb-4">Bienvenue <?= esc(session()->get('prenom')) ?>, commencez par créer un projet !</h1>
-	<div>
-		<button class="btn btn-primary" onclick="openModal()">Créer un nouveau projet</button>
+	<div class="container mt-5">
+		<h1 class="text-center mb-4">Bienvenue <?= esc(session()->get('prenom')) ?>, commencez par créer un projet !</h1>
+		<div>
+			<button class="btn btn-primary" onclick="openModal()">Créer un nouveau projet</button>
+		</div>
 	</div>
 
 
