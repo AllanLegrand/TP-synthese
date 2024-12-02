@@ -28,7 +28,7 @@ class ForgotPasswordController extends Controller
 		if ($user) {
 			// Générer un jeton de réinitialisation de MDP et enregistrer-le dans BD
 			$token = bin2hex(random_bytes(16));
-			$expiration = date('Y-m-d H:i:s', strtotime('+1 hour'));
+			$expiration = date('Y-m-d H:i:s', strtotime('+2 hour'));
 			$userModel->set('resettoken', $token)
 				->set('resettokenexpiration', $expiration)
 				->update($user['idutil']);
