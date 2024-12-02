@@ -51,3 +51,5 @@ $routes->get('/recherche-utilisateur', 'ProjetController::rechercherUtilisateur'
 
 $routes->post('/ajouterCommentaire', 'ProjetController::ajouterCommentaire');
 
+
+$routes->get('/supprimerCommentaire/(:num)', 'ProjetController::supprimerCommentaire/$1');

@@ -202,9 +202,15 @@ function openCommentModal(commentaires, idtache) {
                 }).format(commentDate).replace('.', '').toLowerCase();
 
                 return `
-                    <div id="commentaire-simple" class="commentaire-simple">
+                    <div id="commentaire-simple" class="commentaire-simple" style="margin-bottom: 10px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
                         <p><strong>${comment.prenom} ${comment.nom}</strong> <small>${formattedDate}</small></p>
+                        <img src="/assets/img/remove.png" alt="Supprimer" class="icon" style="width: 15px;height: 15px;cursor: pointer;transition: transform 0.2s ease, opacity 0.3s ease;"
+                                    onclick="if (confirm('Êtes-vous sûr de vouloir supprimer ce commentaire ?')) location.href='/supprimerCommentaire/${comment.idcom}';" />
+                        </div>
                         <p>${comment.contenu}</p>
+
+                        
                     </div>
                 `;
             }).join('')
