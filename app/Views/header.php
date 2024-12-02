@@ -32,8 +32,10 @@
                 <?php endif; ?>
                 <!-- Barre de recherche + icône utilisateur -->
                 <div class="ms-auto d-flex align-items-center position-relative">
-                    <input type="text" class="form-control search-bar me-2" placeholder="Rechercher..." oninput="searchProjects(this.value)">
-                    <div id="searchResults" class="search-results"></div>
+                    <?php if (session()->has('idutil')) : ?>
+                        <input type="text" class="form-control search-bar me-2" placeholder="Rechercher..." oninput="searchProjects(this.value)">
+                        <div id="searchResults" class="search-results"></div>
+                    <?php endif; ?>
                     <a href="<?= base_url('profile') ?>">
                         <img src="/assets/img/user.png" alt="Utilisateur" class="user-icon">
                     </a>
