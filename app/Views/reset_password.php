@@ -5,6 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Réinitialisation du mot de passe</title>
+	<link rel="stylesheet" href="/assets/css/reset_password.css">
 </head>
 
 <body>
