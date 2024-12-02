@@ -1,7 +1,7 @@
 @import url('couleur.css');
 
 body {
-    background-color: var(--bleu);
+    background-color: var(--blanc);
 }
 
 main {
@@ -185,7 +185,7 @@ main {
 .dialog-box h3 {
     margin-bottom: 15px;
     font-size: 18px;
-    color: #d9534f;
+    color: var(--violetfoncer);
 }
 
 .dialog-box p {
@@ -201,13 +201,23 @@ main {
     font-size: 14px;
     border-radius: 4px;
 }
+
 #deleteAccountBtn{
 	margin-top: 10px;
 }
+
 .dialog-box .btn-danger {
 	margin-top: 25px;
-    background: #d9534f;
+    background: var(--violetclair);
     color: #fff;
+}
+
+.dialog-box .btn-secondary {
+	margin-top: 25px;
+}
+
+.dialog-box .btn-danger.btn-danger:hover{
+    background: var(--violetfoncer);
 }
 
 .dialog-box .btn-secondary {

@@ -35,7 +35,7 @@ class ResetPasswordController extends Controller
 				->set('resettoken', null)
 				->set('resettokenexpiration', null)
 				->update($user['idutil']);
-			return 'Mot de passe réinitialisé avec succès.';
+			return redirect()->to('/signin');
 		} else {
 			return 'Erreur lors de la réinitialisation du mot de passe.';
 		}

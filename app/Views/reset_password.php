@@ -9,8 +9,8 @@
 </head>
 
 <body>
-	<h1>Réinitialisation du mot de passe</h1>
 	<form action="/reset-password/updatePassword" method="post">
+		<h1>Réinitialisation du mot de passe</h1>
 		<input type="hidden" name="token" value="<?= $token ?>">
 		<label for="password">Nouveau mot de passe :</label>
 		<input type="password" name="password" id="password" required>

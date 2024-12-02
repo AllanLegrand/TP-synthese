@@ -79,6 +79,6 @@ class ProfileController extends BaseController
         delete_cookie('ci_session'); // Supprimer le cookie de session
 
         // Rediriger vers la page de suppression avec un message de succès
-        return view('suppresion');
+        return redirect()->to('/accueil');
     }
 }
