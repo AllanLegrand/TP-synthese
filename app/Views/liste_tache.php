@@ -77,7 +77,7 @@
                         </div>
 					<?php endif; ?>
 				<?php endforeach; ?>
-				<button class="btn btn-primary" onclick="openAddModal()">Ajouter une tâche</button>
+				<button class="btn btn-primary" onclick="openAddModal('A Faire')">Ajouter une tâche</button>
 			</div>
 
 			<!-- En Cours -->
@@ -116,7 +116,7 @@
                         </div>
 					<?php endif; ?>
 				<?php endforeach; ?>
-				<button class="btn btn-primary" onclick="openAddModal()">Ajouter une tâche</button>
+				<button class="btn btn-primary" onclick="openAddModal('En cours')">Ajouter une tâche</button>
 			</div>
 
 			<!-- Terminées -->
@@ -150,7 +150,7 @@
                         </div>
 					<?php endif; ?>
 				<?php endforeach; ?>
-				<button class="btn btn-primary" onclick="openAddModal()">Ajouter une tâche</button>
+				<button class="btn btn-primary" onclick="openAddModal('Terminée')">Ajouter une tâche</button>
 			</div>
 		</div>
 	<?php else: ?>
@@ -159,21 +159,21 @@
 			<div class="task-column a-faire">
 				<h3>À Faire</h3>
 				<p>Aucune tâche trouvée pour ce projet.</p>
-				<button class="btn btn-primary" onclick="openAddModal()">Ajouter une tâche</button>
+				<button class="btn btn-primary" onclick="openAddModal('A Faire')">Ajouter une tâche</button>
 			</div>
 
 			<!-- En Cours -->
 			<div class="task-column en-cours">
 				<h3>En Cours</h3>
 				<p>Aucune tâche trouvée pour ce projet.</p>
-				<button class="btn btn-primary" onclick="openAddModal()">Ajouter une tâche</button>
+				<button class="btn btn-primary" onclick="openAddModal('En cours')">Ajouter une tâche</button>
 			</div>
 
 			<!-- Terminées -->
 			<div class="task-column terminee">
 				<h3>Terminées</h3>
 				<p>Aucune tâche trouvée pour ce projet.</p>
-				<button class="btn btn-primary" onclick="openAddModal()">Ajouter une tâche</button>
+				<button class="btn btn-primary" onclick="openAddModal('Terminée')">Ajouter une tâche</button>
 			</div>
 		</div>
 	<?php endif; ?>
@@ -248,7 +248,7 @@
 
 			<div>
 				<label for="addDescription">Description :</label>
-				<textarea id="addDescription" name="description" required></textarea>
+				<textarea id="addDescription" name="description"></textarea>
 			</div>
 
 			<div>
@@ -332,5 +332,3 @@
         </ul>
     </div>
 </div>
-
-

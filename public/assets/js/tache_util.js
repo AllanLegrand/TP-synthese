@@ -51,8 +51,17 @@ window.onclick = function (event) {
     }
 };
 
-function openAddModal() {
+function openAddModal(statut) {
+    // Ouvrir le modal
     document.getElementById('addTaskModal').style.display = 'flex';
+    
+    // Trouver le select de statut et définir la valeur
+    document.getElementById('addStatut').value = statut;
+}
+
+// Fonction pour fermer le modal
+function closeAddModal() {
+    document.getElementById('addTaskModal').style.display = 'none';
 }
 
 function makeEditable(element, field, projectId) {
