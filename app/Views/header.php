@@ -32,10 +32,8 @@
                 <?php endif; ?>
                 <!-- Barre de recherche + icône utilisateur -->
                 <div class="ms-auto d-flex align-items-center position-relative">
-                    <?php if (session()->has('idutil')) : ?>
-                        <input type="text" class="form-control search-bar me-2" placeholder="Rechercher..." oninput="searchProjects(this.value)">
-                        <div id="searchResults" class="search-results"></div>
-                    <?php endif; ?>
+                    <input type="text" class="form-control search-bar me-2" placeholder="Rechercher..." oninput="searchProjects(this.value)">
+                    <div id="searchResults" class="search-results"></div>
                     <a href="<?= base_url('profile') ?>">
                         <img src="/assets/img/user.png" alt="Utilisateur" class="user-icon">
                     </a>
@@ -56,7 +54,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="descriptionprojet" class="form-label">Description</label>
-                    <textarea class="form-control" id="descriptionprojet" name="descriptionprojet" rows="4" required></textarea>
+                    <textarea class="form-control" id="descriptionprojet" name="descriptionprojet" rows="4"></textarea>
                 </div>
                 <button type="submit" class="btn popup-creer">Créer</button>
                 <button type="button" class="btn popup-annuler" onclick="closeModal()">Annuler</button>
@@ -64,4 +62,3 @@
         </div>
     </div>
     <script src="/assets/js/header.js"></script>
-
