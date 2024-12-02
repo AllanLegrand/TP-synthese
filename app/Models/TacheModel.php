@@ -140,4 +140,15 @@ class TacheModel extends Model
 					->where('statut', $statut)
 					->countAllResults();
 	}
+
+	public function getOverdueTasks() {
+		return $this->db->table('tache')
+					->select("tache.idtache, tache.titre, tache.description, utilisateur.mail")
+					->join('groupe', 'tache.idprojet = groupe.idprojet')
+					->join('utilisateur', 'g.idutil = u.idutil')
+					->where('echeance <', date('Y-m-d'))
+					->where('emailAlerte', false)
+					->get()
+					->getResultArray();;
+    }
 }

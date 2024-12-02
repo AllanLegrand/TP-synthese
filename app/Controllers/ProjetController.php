@@ -121,6 +121,18 @@ class ProjetController extends BaseController
 		}
 	}
 
+	public function supprimerCommentaire($idcom)
+	{
+		$commentaireModel = new CommentaireModele();
+
+		// Supprimer la tâche en utilisant son ID
+		if ($commentaireModel->delete($idcom)) {
+			return redirect()->back()->with('message', 'Commentaire supprimée avec succès.');
+		} else {
+			return redirect()->back()->with('error', 'Erreur lors de la suppression de la tâche.');
+		}
+	}
+
 
 	public function findProjectIndexById($array, $id)
 	{

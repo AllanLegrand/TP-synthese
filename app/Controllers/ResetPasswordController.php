@@ -17,6 +17,7 @@ class ResetPasswordController extends Controller
 			return 'Lien de réinitialisation non valide.';
 		}
 	}
+
 	public function updatePassword()
 	{
 		$token = $this->request->getPost('token');
@@ -30,7 +31,7 @@ class ResetPasswordController extends Controller
 		if ($user && $password === $confirmPassword) {
 			// Mettre à jour le mot de passe et réinitialiser le jeton
 			$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-			$userModel->set('password', $hashedPassword)
+			$userModel->set('mdp', $hashedPassword)
 				->set('resettoken', null)
 				->set('resettokenexpiration', null)
 				->update($user['idutil']);
